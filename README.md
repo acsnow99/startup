@@ -31,3 +31,22 @@ Imagine a world of brave heroes and warmongering monsters that is available at y
 - The most recent important events are displayed for all users in the form of simple text and a timestamp; for example, when a user defeats a monster, all users, including the user who defeated the monster, see a message in the adventure log that says 
 >*USERNAME* defeated a monster! 5:34 PM
 
+### Technologies
+- HTML: 
+    * HTML will be used for the **login**, **game**, and **about** pages. 
+- CSS:
+    * Styling of all the pages will use CSS.
+- Javascript:
+    * The game's interactive elements will be coded in Javascript.
+- Authentication:
+    * Users will be asked to create an account before playing. This includes a username and password. Their chosen name will display on the game page.
+- Database Data:
+    * The current game state of each player will be stored in the database. This includes the following values:
+        * Number of player hearts
+        * Number of monster hearts
+        * Which monster they are fighting
+        * Amount of healing resource
+        * Score
+- WebSocket Data:
+    * Certain game events trigger a message to appear on every user's screen. 
+
