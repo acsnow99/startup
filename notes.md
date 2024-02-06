@@ -11,3 +11,12 @@ Today I set up my server on AWS. I learned how to SSH into the server using a pr
 
 ## 1/22/24
 Today I got HTTPS working on my server. What a good feeling! I've had my own website before, but only through services like website builders (Weebly, etc) and Netlify. I really like having complete control of how my webiste looks to the internet, even being able to set up subdomains. I learned that Let's Encrypt is even easier than I thought; it's just as simple as using a service that has Let's Encrypt compatibility built in. I like it! 
+
+
+## 2/5/24
+The last week I have been creating the HTML for my webpage. It has been fun working with multiple HTML files.
+
+Buttons by default do not have any functionality, but they do react visually to the user clicking on them.
+
+head and header are different. Head is where you put information about the website, like the title, character set, and viewport size. To change the viewport size, use the *content* tag. 
+
