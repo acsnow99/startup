@@ -20,3 +20,4 @@ Buttons by default do not have any functionality, but they do react visually to 
 
 head and header are different. Head is where you put information about the website, like the title, character set, and viewport size. To change the viewport size, use the *content* tag. 
 
+For the third party service, I will be calling a random number generator, which will be used in the function of the game. 
