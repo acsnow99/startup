@@ -4,14 +4,15 @@
     align-items: center;
     flex-direction: row;
     gap: 0.5rem;
-    padding-left: 30vw;
-    padding-right: 30vw;
+    padding-left: 35vw;
+    padding-right: 35vw;
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
 .game_button_fight {
     flex: 1;
+    font-size: 275%;
 }
 
 .game_buttons_internal {
@@ -19,12 +20,15 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    font-size: 50%;
 }
 
 .game_button_heal {
     flex: 1;
+    font-size: 300%;
 }
 
 .game_button_run {
     flex: 1;
+    font-size: 150%;
 }
