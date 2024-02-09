@@ -1,0 +1,15 @@
+
+.game_buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.game_button_fight_heal {
+    flex: 1.5;
+}
+
+.game_button_run {
+    flex: 3;
+}
