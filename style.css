@@ -1,5 +1,5 @@
 
-.game_buttons {
+.game_buttons_container {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -15,7 +15,7 @@
     font-size: 275%;
 }
 
-.game_buttons_internal {
+.game_buttons_container_internal {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -31,4 +31,19 @@
 .game_button_run {
     flex: 1;
     font-size: 150%;
+}
+
+
+.game_images_container {
+    display: flex;
+    align-items: baseline;
+}
+
+.hero_image {
+    width: 10rem;
+    height: auto;
+}
+.monster_image {
+    width: 20rem;
+    height: auto;
 }
