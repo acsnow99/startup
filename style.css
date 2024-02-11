@@ -79,21 +79,29 @@ footer {
 }
 
 .game_log_container {
-    flex: 1;
+    flex: 0.5;
     text-align: right;
 }
 
 .game_images_container {
-    flex: 2;
+    flex: 1;
     display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.game_images_container_internal {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
     align-items: baseline;
 }
 
 .hero_image {
-    width: 20vw;
+    width: 15vw;
     height: auto;
 }
 .monster_image {
-    width: 30vw;
+    width: 25vw;
     height: auto;
 }
