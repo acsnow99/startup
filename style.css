@@ -17,6 +17,14 @@ footer {
 }
 
 
+.navbar-brand {
+    font-size: 500%;
+}
+.nav-link {
+    font-size: 300%;
+}
+
+
 .game_buttons_container {
     display: flex;
     align-items: center;
