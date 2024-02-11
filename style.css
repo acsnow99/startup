@@ -1,4 +1,22 @@
 
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 95vw;
+    overflow-x: hidden;
+}
+header {
+    flex: 0 20rem;
+}
+main {
+    flex: 1;
+}
+footer {
+    flex: 0 2rem;
+}
+
+
 .game_buttons_container {
     display: flex;
     align-items: center;
@@ -8,6 +26,19 @@
     padding-right: 35vw;
     padding-top: 2rem;
     padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 500px) {
+    .game_buttons_container {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 0.5rem;
+        padding-left: 25vw;
+        padding-right: 25vw;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
 }
 
 .game_button_fight {
@@ -40,10 +71,10 @@
 }
 
 .hero_image {
-    width: 10rem;
+    width: 20vw;
     height: auto;
 }
 .monster_image {
-    width: 20rem;
+    width: 30vw;
     height: auto;
 }
