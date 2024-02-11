@@ -73,7 +73,18 @@ footer {
 }
 
 
+.game_images_and_log_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.game_log_container {
+    flex: 1;
+    text-align: right;
+}
+
 .game_images_container {
+    flex: 2;
     display: flex;
     align-items: baseline;
 }
