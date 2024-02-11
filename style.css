@@ -29,9 +29,29 @@ footer {
 }
 
 
+
+.game_images_and_log_and_username_container {
+    display: flex;
+    flex-direction: row;
+}
+
+
 .username_and_score_container {
-    flex: 0.25;
+    flex: 1;
     background-color: lightgray;
+}
+
+
+.game_log_container {
+    flex: 1;
+    text-align: right;
+    background-color: darkgray;
+}
+
+.game_images_and_buttons_container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -41,8 +61,6 @@ footer {
     align-items: center;
     flex-direction: row;
     gap: 0.5rem;
-    padding-left: 35vw;
-    padding-right: 35vw;
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
@@ -53,8 +71,6 @@ footer {
         align-items: center;
         flex-direction: row;
         gap: 0.5rem;
-        padding-left: 25vw;
-        padding-right: 25vw;
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
@@ -84,28 +100,11 @@ footer {
 }
 
 
-.game_images_and_log_and_username_container {
-    display: flex;
-    flex-direction: row;
-}
-
-.game_log_container {
-    flex: 1;
-    text-align: right;
-    background-color: darkgray;
-}
-
-.game_images_and_buttons_container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
 .game_images_container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: center;
 }
 
 .game_images_container_internal {
