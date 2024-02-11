@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 95vw;
+    width: 99vw;
     overflow-x: hidden;
 }
 header {
@@ -16,7 +16,8 @@ main {
     flex: 1;
 }
 footer {
-    flex: 0 2rem;
+    flex: 0 0.5rem;
+    background-color: gray;
 }
 
 
@@ -38,7 +39,17 @@ footer {
 
 .username_and_score_container {
     flex: 1;
+}
+
+.username_and_score_container_internal {
+    display: flex;
     background-color: lightgray;
+    align-items: start;
+    flex-direction: column;
+    align-items: end;
+}
+.username_and_score_container_internal > * {
+    padding-right: 0.5rem;
 }
 
 
@@ -47,11 +58,15 @@ footer {
     text-align: right;
     background-color: darkgray;
 }
+.game_log_container > * {
+    padding-right: 0.5rem;
+}
 
 .game_images_and_buttons_container {
-    flex: 1;
+    flex: 3;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 
@@ -97,14 +112,6 @@ footer {
 .game_button_run {
     flex: 1;
     font-size: 150%;
-}
-
-
-.game_images_container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .game_images_container_internal {
