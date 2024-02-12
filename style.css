@@ -145,10 +145,26 @@ footer {
     flex: 0.25;
     display: flex;
     flex-direction: row;
+    gap: 5rem;
     align-items: center;
     justify-content: center;
 }
+.game_images_hearts_container_internal {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+.player_hearts {
+    transform: translate(0, 10rem);
+}
 
+.heart_image {
+    width: 3em;
+    height: auto;
+}
 .hero_image {
     width: auto;
     height: 30vh;
@@ -168,26 +184,39 @@ footer {
         width: auto;
         height: 40vh;
     }
+    .player_hearts {
+        transform: translate(-10%, 10rem);
+    }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .hero_image {
         width: auto;
-        height: 7em;
+        height: 7rem;
     }
     .monster_image {
         width: auto;
-        height: 15em;
+        height: 15rem;
+    }
+    .heart_image {
+        width: 1em;
+        height: auto;
+    }
+    .game_images_hearts_container {
+        gap: 2rem;
     }
 }
 
 @media screen and (max-width: 400px) {
     .hero_image {
         width: auto;
-        height: 5em;
+        height: 5rem;
     }
     .monster_image {
         width: auto;
-        height: 10em;
+        height: 10rem;
+    }
+    .player_hearts {
+        transform: translate(-20%, 5rem);
     }
 }
