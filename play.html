@@ -21,34 +21,43 @@
   ></script>
 
     <header>
-      <nav class="navbar">
-        <div class="navbar_items_container">
-          <a class="navbar-brand" href="index.html">Cool CS RPG - </a>
-          <a class="nav-link px-2" href="play.html">Play</a>
-          <a class="nav-link px-2" href="rules.html">Rules</a>
-          <a class="nav-link px-2" href="index.html">Logout</a>
+      <nav class="navbar navbar-expand navbar-dark">
+        <a class="navbar-brand" href="index.html">Cool CS RPG - </a>
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item">
+            <a class="nav-link" href="play.html">Play</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rules.html">Rules</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Logout</a>
+          </li>
         </div>
       </nav>
     </header>
     <main>
       <div class="game_images_and_log_and_username_container">
-        <div class="game_images_and_buttons_container">
-          <div class="game_images_container_internal">
-            <img src="images/hero.png" class="hero_image">
-            <img src="images/monster.jpg" class="monster_image">
-          </div>
-          <div class="game_buttons_container">
-            <button type="button" class="game_button_fight btn btn-primary btn-lg">Fight!</button>
-            <div class="game_buttons_container_internal">
-              <button type="button" class="game_button_heal btn btn-success">Heal!</button>
-              <button type="button" class="game_button_run btn btn-secondary btn-sm">Run! (-200g)</button>
+        <div class="game_images_and_buttons_and_username_container">
+          <div class="game_images_and_buttons_container">
+            
+            <div class="game_images_container_internal">
+              <img src="images/hero.png" class="hero_image">
+              <img src="images/monster.jpg" class="monster_image">
+            </div>
+            <div class="game_buttons_container">
+              <button type="button" class="game_button_fight btn btn-primary btn-lg">Fight!</button>
+              <div class="game_buttons_container_internal">
+                <button type="button" class="game_button_heal btn btn-success">Heal!</button>
+                <button type="button" class="game_button_run btn btn-secondary btn-sm">Run! (-200g)</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="username_and_score_container">
-          <div class="username_and_score_container_internal">
-            <h3>Kevin3411</h3>
-            <h3>Score: 530g</h3>
+          <div class="username_and_score_container">
+            <div class="username_and_score_container_internal">
+              <h3 class="username_text">Kevin3411</h3>
+              <h3 class="username_text">Score: 530g</h3>
+            </div>
           </div>
         </div>
         <div class="game_log_container">
