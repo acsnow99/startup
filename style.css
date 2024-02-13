@@ -19,6 +19,9 @@ footer {
     flex: 0 0.5rem;
     background-color: gray;
 }
+footer > * {
+    padding-left: 0.25rem;
+}
 
 @media screen and (max-width: 500px) {
     header {
@@ -38,8 +41,15 @@ footer {
 .login_form {
     padding: 5vw;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
     gap: 2rem;
+}
+.login_form_internal {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-end;
 }
 
 
