@@ -10,6 +10,7 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <link href="./style.css" rel="stylesheet"/>
   </head>
   <body>
     
@@ -20,22 +21,33 @@
   ></script>
 
     <header>
-      <h1>CS RPG</h1>
-      <nav>
-        <menu>
-        <li><a href="play.html">Play Game</a></li>
-        <li><a href="rules.html">Rules</a></li>
-        <li><a href="index.html">Logout</a></li>
-        </menu>
+      <nav class="navbar navbar-expand navbar-dark">
+        <a class="navbar-brand" href="index.html">Cool CS RPG - </a>
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item">
+            <a class="nav-link" href="play.html">Play</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rules.html">Rules</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Logout</a>
+          </li>
+        </div>
       </nav>
-      <hr>
     </header>
     <main>
-      <form action="play.html"><label for="username">Enter your username: </label>
-        <input type="text" username="username" id="username" required />
-        <label for="password">Enter your password: </label>
-        <input type="text" password="password" id="password" required />
-        <button>Login</button>
+      <form action="play.html" class="login_form">
+        <h3>Welcome, brave adventurer. Provide your Guild credentials:</h3>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="username" class="form-control" id="username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" placeholder="Password" required>
+        </div>
+        <button class="btn btn-primary">Login</button>
       </form>
     </main>
     <footer>

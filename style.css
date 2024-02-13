@@ -35,6 +35,15 @@ footer {
 
 
 
+.login_form {
+    padding: 5vw;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+
+
 .game_images_and_log_and_username_container {
     display: flex;
     flex-direction: row;
