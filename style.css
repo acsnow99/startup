@@ -10,17 +10,23 @@ header {
     flex: 0 4rem;
     display: flex;
     align-items: center;
-    background-color: gray;
+    background-color: #463823;
+    border-bottom: solid black;
 }
 main {
     flex: 1;
 }
 footer {
-    flex: 0 0.5rem;
-    background-color: gray;
+    flex: 0 0.25rem;
+    background-color: #9BA7B0;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    border-top: solid black;
 }
 footer > * {
-    padding-left: 0.25rem;
+    padding: 0.1rem;
+    color: black;
 }
 
 @media screen and (max-width: 500px) {
@@ -28,7 +34,7 @@ footer > * {
         flex: 0 2rem;
     }
     footer {
-        flex: 0 0.25rem;
+        flex: 0 0.2rem;
     }
 }
 
@@ -69,14 +75,17 @@ footer > * {
 
 .username_and_score_container_internal {
     display: flex;
-    background-color: lightgray;
     align-items: start;
     flex-direction: column;
     align-items: end;
+    background-color: #9B9181;
+    border: solid black;
+    border-right: none;
 }
 .username_text {
     padding-right: 0.5rem;
     text-align: right;
+    color: black;
 }
 @media screen and (max-width: 700px) {
     .username_text {
@@ -90,10 +99,14 @@ footer > * {
 .game_log_container {
     flex: 1;
     text-align: right;
-    background-color: darkgray;
+    background-color: #9B9181;
+    border: solid black;
+    border-bottom: none;
 }
 .game_log_container > * {
     padding-right: 1rem;
+    padding-left: 0.5rem;
+    color: black;
 }
 
 
