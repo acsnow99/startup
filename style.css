@@ -26,6 +26,7 @@ footer {
 }
 footer > * {
     padding: 0.1rem;
+    padding-right: 0.5rem;
     color: black;
 }
 
@@ -80,6 +81,7 @@ footer > * {
     align-items: end;
     background-color: #9B9181;
     border: solid black;
+    border-bottom-left-radius: 25%;
     border-right: none;
 }
 .username_text {
@@ -218,7 +220,7 @@ footer > * {
         height: 40vh;
     }
     .player_hearts {
-        transform: translate(-10%, 10rem);
+        transform: translate(0, 7rem);
     }
 }
 
