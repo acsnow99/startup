@@ -10,6 +10,7 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
+    <link href="./style.css" rel="stylesheet"/>
   </head>
   <body>
     
@@ -20,38 +21,47 @@
   ></script>
 
     <header>
-      <h1>CS RPG</h1>
-      <nav>
-        <menu>
-        <li><a href="play.html">Play Game</a></li>
-        <li><a href="rules.html">Rules</a></li>
-        <li><a href="index.html">Logout</a></li>
-        </menu>
+      <nav class="navbar navbar-expand navbar-dark">
+        <a class="navbar-brand" href="index.html">Cool CS RPG - </a>
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item">
+            <a class="nav-link" href="play.html">Play</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rules.html">Rules</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Logout</a>
+          </li>
+        </div>
       </nav>
-      <hr>
     </header>
     <main>
-      <p>
-        As an RPG hero, your job is to exterminate monsters. 
-        You will fight one at a time, gaining precious gold as you slay each one.
-      </p>
-      <p>
-        Click "Fight!" to attack the monster. There is a chance you will get hurt also!
-      </p>
-      <p>
-        Click "Heal!" to heal using your stored health potions.
-      </p>
-      <p>
-        Click "Run!" to spawn a new monster and gain an extra health potion. 
-        Running costs gold, so only use this when necessary.
-      </p>
-      <p>
-        As you fight monsters, you will see the progress of other heroes! 
-        Your heroic feats will also be visible to other heroes. 
-      </p>
-      <p>
-        Good luck!
-      </p>
+      <div class="rules_text">
+        <p class="rules_bold">
+          As an RPG hero, your job is to exterminate monsters. 
+          You will fight one at a time, gaining precious gold as you slay each one.
+        </p>
+        <ul class="rules_list">
+          <li>
+            Click "Fight!" to attack the monster. There is a chance you will get hurt also!
+          </li>
+          <li>
+            Click "Heal!" to heal using your stored health potions.
+          </li>
+          <li>
+            Click "Run!" to spawn a new monster and gain an extra health potion. 
+            Running costs gold, so only use this when necessary.
+          </li>
+        </ul>
+        <p>
+          As you fight monsters, you will see the progress of other heroes! 
+          Your heroic feats will also be visible to other heroes. 
+        </p>
+        <p class="rules_bold">
+          Good luck!
+        </p>
+      </div>
     </main>
     <footer>
       <br>
