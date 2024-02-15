@@ -21,3 +21,13 @@ Buttons by default do not have any functionality, but they do react visually to 
 head and header are different. Head is where you put information about the website, like the title, character set, and viewport size. To change the viewport size, use the *content* tag. 
 
 For the third party service, I will be calling a random number generator, which will be used in the function of the game. 
+
+
+## 2/14/24 CSS Deliverable
+### Changes: 
+- **Header, footer, and main content body** all have separate styling. Header and footer are static sizes, main is dynamically sized.
+- **Navigation elements** are displayed at the top of each page except the login page. To navigate to the play page from the login page, the user must enter a username and password. I used the navbar from Bootstrap but adjusted the placement of the nav items, as well as the colors.
+- **Responsive to window resizing** - application responds to smaller and larger screen sizes by resizing images, adjusting text size, and wrapping some flex items.
+- **Application elements** are present: buttons for interacting with the game (from Bootstrap), images for the game's visuals, the game log (with placeholder text), and the player's username and score (with placeholder text).
+- **Application text content** is present on the play page (which will be dynamic in the future) and on the rules page. The fonts are consistent across the application. Font sizes on the play page are different sizes depending on their importance. 
+- **Application images** are present on the play page. The size and the placement of these items was hard to adjust to make them easy to read and not too big. When they were too big they would push other items off the screen. I used flex mostly to get this result, but I also used relative height for the image sizes, and one transform on the player's hearts. 
