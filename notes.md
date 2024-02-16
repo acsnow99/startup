@@ -31,3 +31,7 @@ For the third party service, I will be calling a random number generator, which 
 - **Application elements** are present: buttons for interacting with the game (from Bootstrap), images for the game's visuals, the game log (with placeholder text), and the player's username and score (with placeholder text).
 - **Application text content** is present on the play page (which will be dynamic in the future) and on the rules page. The fonts are consistent across the application. Font sizes on the play page are different sizes depending on their importance. 
 - **Application images** are present on the play page. The size and the placement of these items was hard to adjust to make them easy to read and not too big. When they were too big they would push other items off the screen. I used flex mostly to get this result, but I also used relative height for the image sizes, and one transform on the player's hearts. 
+
+
+## 2/14/24 JS Arrays
+Arrays are defined with square brackets. Filter function takes a function as a parameter and filters out anything that results in a false result. 
