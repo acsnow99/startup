@@ -84,13 +84,13 @@ footer > * {
     border-bottom-left-radius: 25%;
     border-right: none;
 }
-.username_text {
+.username_and_score_container_internal > * {
     padding-right: 0.5rem;
     text-align: right;
     color: black;
 }
 @media screen and (max-width: 700px) {
-    .username_text {
+    .username_and_score_container_internal > * {
         padding-right: 0.5rem;
         font-size: 100%;
         text-align: right;

@@ -44,7 +44,7 @@
         console.log("Form submit script loaded")
         username = "";
         submit_login_and_advance_to_play = function(event) {
-          username = document.querySelector("#username").value;
+          localStorage.setItem("username", document.querySelector("#username").value);
           window.location.href = "play.html";
         }
       </script>

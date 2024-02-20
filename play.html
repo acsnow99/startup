@@ -68,8 +68,7 @@
             </div>
           </div>
           <div class="username_and_score_container">
-            <div class="username_and_score_container_internal">
-              <h3 class="username_text">Kevin3411</h3>
+            <div class="username_and_score_container_internal" id="username_and_score">
               <h3 class="username_text">Score: 530g</h3>
             </div>
           </div>
@@ -81,6 +80,13 @@
           <p>acsnow was defeated and lost 357g!</p>
         </div>
       </div>
+      <script>
+        const local_username = localStorage.getItem("username");
+        const username_display = document.createElement("h3");
+        username_display.textContent = local_username;
+        const username_parent_obj = document.querySelector("#username_and_score");
+        username_parent_obj.appendChild(username_display);
+      </script>
     </main>
     <footer>
       <p>by Alex Snow - <a href="https://github.com/acsnow99/startup">GitHub</a></p>
