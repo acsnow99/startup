@@ -26,7 +26,7 @@
       </nav>
     </header>
     <main>
-      <form action="play.html" class="login_form">
+      <form action="javascript:submit_login_and_advance_to_play()" class="login_form">
         <h1>Welcome, brave adventurer. Provide your Guild credentials:</h1>
         <div class="login_form_internal">
           <div class="form-group">
@@ -37,9 +37,17 @@
             <label for="password">Password:</label>
             <input type="password" class="form-control" id="password" placeholder="Password" required>
           </div>
-          <button class="btn btn-primary">Login</button>
+          <button id="btn_submit_login" class="btn btn-primary">Login</button>
         </div>
       </form>
+      <script>
+        console.log("Form submit script loaded")
+        username = "";
+        submit_login_and_advance_to_play = function(event) {
+          username = document.querySelector("#username").value;
+          window.location.href = "play.html";
+        }
+      </script>
     </main>
     <footer>
       <p>by Alex Snow - <a href="https://github.com/acsnow99/startup">GitHub</a></p>
