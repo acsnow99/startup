@@ -80,22 +80,36 @@
         </div>
       </div>
       <script>
-        const local_username = localStorage.getItem("username");
-        const username_display = document.createElement("h3");
-        username_display.textContent = local_username;
-        const username_parent_obj = document.querySelector("#username_and_score");
-        username_parent_obj.appendChild(username_display);
-
-        const score_access_string = "score" + local_username;
-        const local_score = localStorage.getItem(score_access_string);
-        const score_display = document.createElement("h5");
-        if (local_score != null) {
-          score_display.textContent = local_score;
-        } else {
-          score_display.textContent = "0";
+        function update_username_display() {
+          const local_username = localStorage.getItem("username");
+          const username_display = document.createElement("h3");
+          username_display.id = "username_display";
+          username_display.textContent = local_username;
+          const username_parent_obj = document.querySelector("#username_and_score");
+          username_parent_obj.appendChild(username_display);
         }
-        const score_parent_object = document.querySelector("#username_and_score");
-        score_parent_object.appendChild(score_display);
+        
+        function update_score_display() {
+          const local_username = localStorage.getItem("username");
+          const score_access_string = "score" + local_username;
+          const local_score = localStorage.getItem(score_access_string);
+          const score_display = document.createElement("h5");
+          score_display.id = "score_display";
+          if (local_score != null) {
+            score_display.textContent = local_score;
+          } else {
+            score_display.textContent = "0";
+          }
+          const score_parent_object = document.querySelector("#username_and_score");
+          let existing_score_display = document.getElementById("score_display");
+          if (existing_score_display != null) {
+            score_parent_object.removeChild(existing_score_display);
+          }
+          score_parent_object.appendChild(score_display);
+        }
+        
+        update_username_display();
+        update_score_display();
       </script>
     </main>
     <footer>
