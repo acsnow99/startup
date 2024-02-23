@@ -22,7 +22,7 @@
 
     <header>
       <nav class="navbar navbar-expand navbar-dark">
-        <a class="navbar-brand" href="index.html">Cool CS RPG - </a>
+        <a class="navbar-brand" href="index.html">Cool CS RPG</a>
       </nav>
     </header>
     <main>
@@ -49,6 +49,11 @@
           const local_score = localStorage.getItem(score_access_string);
           if (local_score == null) {
             localStorage.setItem(score_access_string, 500);
+          }
+          const healing_access_string = "healing" + input_username;
+          const local_healing = localStorage.getItem(healing_access_string);
+          if (local_healing == null) {
+            localStorage.setItem(healing_access_string, 0);
           }
           localStorage.setItem("username", input_username);
           window.location.href = "play.html";

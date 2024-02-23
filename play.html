@@ -62,7 +62,7 @@
             <div class="game_buttons_container">
               <button type="button" class="game_button_fight btn btn-primary btn-lg">Fight!</button>
               <div class="game_buttons_container_internal">
-                <button type="button" class="game_button_heal btn btn-success">Heal!</button>
+                <button type="button" id="game_button_heal" class="game_button_heal btn btn-success"><div id="healing_display">Heal! 0</div></button>
                 <button type="button" id="game_button_run" class="game_button_run btn btn-secondary btn-sm">Run! (-200g)</button>
               </div>
             </div>
@@ -89,6 +89,8 @@
           username_parent_obj.appendChild(username_display);
         }
         
+
+        // TODO: refactor the two functions below into one function
         function update_score_display() {
           const local_username = localStorage.getItem("username");
           const score_access_string = "score" + local_username;
@@ -107,9 +109,29 @@
           }
           score_parent_object.appendChild(score_display);
         }
+        function update_healing_display() {
+          const local_username = localStorage.getItem("username");
+          const healing_access_string = "healing" + local_username;
+          const local_healing = localStorage.getItem(healing_access_string);
+          const healing_display = document.createElement("div");
+          
+          healing_display.id = "healing_display";
+          if (local_healing != null) {
+            healing_display.textContent = "Heal! " + local_healing;
+          } else {
+            healing_display.textContent = "Heal! 0";
+          }
+          const healing_parent_object = document.querySelector("#game_button_heal");
+          let existing_healing_display = document.getElementById("healing_display");
+          if (existing_healing_display != null) {
+            healing_parent_object.removeChild(existing_healing_display);
+          }
+          healing_parent_object.appendChild(healing_display);
+        }
         
         update_username_display();
         update_score_display();
+        update_healing_display();
       </script>
     </main>
     <footer>

@@ -16,9 +16,16 @@ document.querySelector("#game_button_run")?.addEventListener('click', function(e
     const score_access_string = "score" + local_username;
     const local_score = localStorage.getItem(score_access_string);
     let new_score = local_score - run_cost;
+    if (new_score < 0) {
+        new_score = 0;
+    }
     localStorage.setItem(score_access_string, new_score);
-
     update_score_display();
-});
 
+    const healing_access_string = "healing" + local_username;
+    const local_healing = localStorage.getItem(healing_access_string);
+    let new_healing = Number(local_healing) + 1;
+    localStorage.setItem(healing_access_string, new_healing);
+    update_healing_display();
+});
 
