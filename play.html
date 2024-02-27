@@ -47,7 +47,7 @@
                 <img src="images/heart_filled.png" class="heart_image">
               </div>
 
-              <div class="game_images_hearts_container_internal">
+              <div class="game_images_hearts_container_internal" id="enemy_health">
                 <img src="images/heart_filled.png" class="heart_image">
                 <img src="images/heart_filled.png" class="heart_image">
                 <img src="images/heart_filled.png" class="heart_image">
@@ -131,8 +131,12 @@
         function update_health_display() {
           const local_username = localStorage.getItem("username");
           const health_access_string = "health" + local_username;
+          const enemy_health_access_string = "enemy_health" + local_username;
           const local_health = localStorage.getItem(health_access_string);
+          const local_enemy_health = localStorage.getItem(enemy_health_access_string);
+          const local_enemy_health_max = localStorage.getItem(enemy_health_access_string + "max");
           const health_display = document.createElement("div");
+          const enemy_health_display = document.createElement("div");
           
           health_display.id = "player_health";
           health_display.setAttribute("class", "game_images_hearts_container_internal player_hearts");
@@ -157,6 +161,31 @@
             health_parent_object.removeChild(existing_health_display);
           }
           health_parent_object.appendChild(health_display);
+
+
+          enemy_health_display.setAttribute("class", "game_images_hearts_container_internal");
+          enemy_health_display.setAttribute("id", "enemy_health");
+          var health_filled_to_display = local_enemy_health;
+          var health_empty_to_display = local_enemy_health_max-local_enemy_health;
+          for (var i = 0; i < health_empty_to_display; i++) {
+            var image = document.createElement("img");
+            image.src = "images/heart_outline.png";
+            image.setAttribute("class", "heart_image");
+            enemy_health_display.appendChild(image);
+          }
+          for (var i = 0; i < health_filled_to_display; i++) {
+            var image = document.createElement("img");
+            image.src = "images/heart_filled.png";
+            image.setAttribute("class", "heart_image");
+            enemy_health_display.appendChild(image);
+          }
+
+          let existing_enemy_health_display = document.getElementById("enemy_health");
+          if (existing_enemy_health_display != null) {
+            health_parent_object.removeChild(existing_enemy_health_display);
+          }
+          health_parent_object.appendChild(enemy_health_display);
+
         }
         
         update_username_display();
