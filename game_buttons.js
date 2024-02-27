@@ -6,15 +6,12 @@ const score_access_string = "score" + local_username;
 const healing_access_string = "healing" + local_username;
 const health_access_string = "health" + local_username;
 const enemy_health_access_string = "enemy_health" + local_username;
+const monster_img_src = ["images/monster.jpg", "images/monster1.jpeg"];
 const run_cost = -200;
 
 document.querySelector("#game_button_run")?.addEventListener('click', function(event) { 
     console.log("run button clicked");
-    monster_img_obj = document.querySelector("#monster_image");
-    monster_img_src = ["images/monster.jpg", "images/monster1.jpeg"];
-    monster_image_index = (monster_image_index + 1) % 2;
-    monster_img_obj.src = monster_img_src[monster_image_index];
-
+    update_monster_image();
     update_score_count(run_cost);
     update_healing_count(1);
 });
@@ -57,6 +54,12 @@ function update_health_count(count) {
 function update_enemy_health_count(count) {
     const local_enemy_health = localStorage.getItem(enemy_health_access_string);
     let new_enemy_health = Number(local_enemy_health) + count;
+    // when enemy dies, reset its health and image
+    if (new_enemy_health <= 0) {
+        new_enemy_health = Math.floor(Math.random() * 3) + 2;
+        localStorage.setItem(enemy_health_access_string + "max", new_enemy_health);
+        update_monster_image();
+    }
     localStorage.setItem(enemy_health_access_string, new_enemy_health);
     update_health_display();
 }
@@ -71,5 +74,10 @@ function update_score_count(count) {
     }
     localStorage.setItem(score_access_string, new_score);
     update_score_display();
+}
+function update_monster_image() {
+    const monster_img_obj = document.querySelector("#monster_image");
+    monster_image_index = (monster_image_index + 1) % 2;
+    monster_img_obj.src = monster_img_src[monster_image_index];
 }
 
