@@ -40,8 +40,8 @@
       <div class="game_images_and_log_and_username_container">
         <div class="game_images_and_buttons_and_username_container">
           <div class="game_images_and_buttons_container">
-            <div class="game_images_hearts_container">
-              <div class="game_images_hearts_container_internal player_hearts">
+            <div class="game_images_hearts_container" id="health_container">
+              <div class="game_images_hearts_container_internal player_hearts" id="player_health">
                 <img src="images/heart_filled.png" class="heart_image">
                 <img src="images/heart_filled.png" class="heart_image">
                 <img src="images/heart_filled.png" class="heart_image">
@@ -128,10 +128,41 @@
           }
           healing_parent_object.appendChild(healing_display);
         }
+        function update_health_display() {
+          const local_username = localStorage.getItem("username");
+          const health_access_string = "health" + local_username;
+          const local_health = localStorage.getItem(health_access_string);
+          const health_display = document.createElement("div");
+          
+          health_display.id = "player_health";
+          health_display.setAttribute("class", "game_images_hearts_container_internal player_hearts");
+          var health_filled_to_display = local_health;
+          var health_empty_to_display = 3-local_health;
+          for (var i = 0; i < health_filled_to_display; i++) {
+            var image = document.createElement("img");
+            image.src = "images/heart_filled.png";
+            image.setAttribute("class", "heart_image");
+            health_display.appendChild(image);
+          }
+          for (var i = 0; i < health_empty_to_display; i++) {
+            var image = document.createElement("img");
+            image.src = "images/heart_outline.png";
+            image.setAttribute("class", "heart_image");
+            health_display.appendChild(image);
+          }
+
+          const health_parent_object = document.querySelector("#health_container");
+          let existing_health_display = document.getElementById("player_health");
+          if (existing_health_display != null) {
+            health_parent_object.removeChild(existing_health_display);
+          }
+          health_parent_object.appendChild(health_display);
+        }
         
         update_username_display();
         update_score_display();
         update_healing_display();
+        update_health_display();
       </script>
     </main>
     <footer>
