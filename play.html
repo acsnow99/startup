@@ -72,11 +72,8 @@
             </div>
           </div>
         </div>
-        <div class="game_log_container">
+        <div class="game_log_container" id="game_log_container">
           <h3>Adventure Log:</h3>
-          <p>acsnow defeated a zombie and earned 204g</p>
-          <p>Kevin3411 reached 500g!</p>
-          <p>acsnow was defeated and lost 357g!</p>
         </div>
       </div>
       <script>
@@ -187,11 +184,19 @@
           health_parent_object.appendChild(enemy_health_display);
 
         }
+        function update_log_display(message) {
+          const log_message_element = document.createElement("p");
+          log_message_element.textContent = message;
+          const log_parent = document.getElementById("game_log_container");
+          log_parent.appendChild(log_message_element);
+        }
         
         update_username_display();
         update_score_display();
         update_healing_display();
         update_health_display();
+        setTimeout(() => update_log_display("karen321 defeated a landsquid and earned 304g!"), 5000);
+        setTimeout(() => update_log_display("karen321 was defeated by a landsquid and lost 2000g!"), 10000);
       </script>
     </main>
     <footer>
