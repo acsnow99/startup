@@ -193,7 +193,7 @@ footer > * {
     justify-content: center;
 }
 .player_hearts {
-    transform: translate(0, 10rem);
+    transform: translate(-5rem, 15rem);
 }
 
 .heart_image {
@@ -238,7 +238,7 @@ footer > * {
         height: auto;
     }
     .game_images_hearts_container {
-        gap: 2rem;
+        gap: 4rem;
     }
 }
 
@@ -253,6 +253,13 @@ footer > * {
     }
     .player_hearts {
         transform: translate(-20%, 5rem);
+    }
+    .game_log_container {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .game_log_header {
+        display: none;
     }
 }
 

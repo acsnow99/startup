@@ -8,14 +8,14 @@ const health_access_string = "health" + local_username;
 const enemy_health_access_string = "enemy_health" + local_username;
 const monster_img_src = ["images/monster.jpg", "images/monster1.jpeg"];
 const monster_names = ["zombie", "landsquid"];
-const run_cost = -200;
+const run_cost = -400;
 const base_win_score = 200;
-const win_score_multiplier = 52;
-const lose_cost = -2000;
+const win_score_multiplier = 102;
+const lose_cost = -1000;
 
 document.querySelector("#game_button_run")?.addEventListener('click', function(event) { 
     console.log("run button clicked");
-    update_monster_image();
+    update_enemy_health_count(-20, false);
     update_score_count(run_cost);
     update_healing_count(1);
 });
@@ -32,7 +32,7 @@ document.querySelector("#game_button_fight")?.addEventListener('click', function
     console.log("fight button clicked");
     const random_seed = Math.random();
     update_enemy_health_count(-1);
-    if (random_seed < 0.3) {
+    if (random_seed < 0.5) {
         update_health_count(-1);
     }
 });
@@ -47,8 +47,8 @@ function update_health_count(count) {
     const local_health = localStorage.getItem(health_access_string);
     let new_health = Number(local_health) + count;
     if (new_health <= 0) {
-        alert("You were defeated by a " + monster_names[monster_index] + "! You lost " + String(lose_cost) + "g.");
-        update_log_display(local_username + " was defeated by a " + monster_names[monster_index] + " and lost " + String(lose_cost) + "g!");
+        alert("You were defeated by a " + monster_names[monster_index] + "! You lost " + String(Math.abs(lose_cost)) + "g.");
+        update_log_display(local_username + " was defeated by a " + monster_names[monster_index] + " and lost " + String(Math.abs(lose_cost)) + "g!");
         console.log("player lost");
         new_health = 3;
         update_score_count(lose_cost);
