@@ -53,18 +53,18 @@
           const healing_access_string = "healing" + input_username;
           const local_healing = localStorage.getItem(healing_access_string);
           if (local_healing == null) {
-            localStorage.setItem(healing_access_string, 0);
+            localStorage.setItem(healing_access_string, 1);
           }
           const health_access_string = "health" + input_username;
           const local_health = localStorage.getItem(health_access_string);
           if (local_health == null) {
-            localStorage.setItem(health_access_string, 1);
+            localStorage.setItem(health_access_string, 2);
           }
           const enemy_health_access_string = "enemy_health" + input_username;
           const local_enemy_health = localStorage.getItem(enemy_health_access_string);
           if (local_enemy_health == null) {
             localStorage.setItem(enemy_health_access_string + "max", 2);
-            localStorage.setItem(enemy_health_access_string, 1);
+            localStorage.setItem(enemy_health_access_string, 2);
           }
           localStorage.setItem("username", input_username);
           window.location.href = "play.html";
