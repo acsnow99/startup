@@ -26,7 +26,8 @@ document.querySelector("#game_button_run")?.addEventListener('click', function(e
 
 document.querySelector("#game_button_heal")?.addEventListener('click', function(event) {
     console.log("heal button clicked");
-    if (!health_is_at_max()) {
+    const local_healing = localStorage.getItem(healing_access_string);
+    if (!health_is_at_max() && local_healing > 0) {
         update_healing_count(-1);
         update_health_count(1);
     }
