@@ -115,6 +115,7 @@ footer > * {
 .game_images_and_buttons_and_username_container {
     flex: 4;
     display: flex;
+    touch-action: manipulation;
 }
 
 .game_images_and_buttons_container {

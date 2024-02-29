@@ -16,9 +16,12 @@ const take_damage_chance = 0.4;
 
 document.querySelector("#game_button_run")?.addEventListener('click', function(event) { 
     console.log("run button clicked");
-    update_enemy_health_count(-20, false);
-    update_score_count(run_cost);
-    update_healing_count(1);
+    const local_score = localStorage.getItem(score_access_string);
+    if (local_score >= Math.abs(run_cost)) {
+        update_enemy_health_count(-20, false);
+        update_score_count(run_cost);
+        update_healing_count(1);
+    }
 });
 
 document.querySelector("#game_button_heal")?.addEventListener('click', function(event) {
