@@ -60,3 +60,17 @@ Imagine a world of brave heroes and warmongering monsters that is available at y
 - **Application elements** are present: buttons for interacting with the game (from Bootstrap), images for the game's visuals, the game log (with placeholder text), and the player's username and score (with placeholder text).
 - **Application text content** is present on the play page (which will be dynamic in the future) and on the rules page. The fonts are consistent across the application. Font sizes on the play page are different sizes depending on their importance. 
 - **Application images** are present on the play page. The size and the placement of these items was hard to adjust to make them easy to read and not too big. When they were too big they would push other items off the screen. I used flex mostly to get this result, but I also used relative height for the image sizes, and one transform on the player's hearts. 
+
+
+
+## 2/28/24 Javascript Deliverable
+### Changes:
+- **Login support** - User can log in with username and password, and their username will display on the game page.
+- **Database data support** - Game data is stored in Local Storage, including:
+    - User score
+    - Healing resource count
+    - Player health
+    - Enemy health
+    - Type of enemy currently faced
+- **WebSocket data support** - Game logs are displayed for what the player does in-game, and timeouts are used to display mock game logs from other players
+- **Application interaction logic** - Game functions properly - player can fight (at their own risk), heal themselves, or choose to run. A random number generator API will be used to randomize the game functionality, such as randomizing when the player takes damage and what monster appears when one is defeated. 
