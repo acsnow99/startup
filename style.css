@@ -22,11 +22,12 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: end;
-    border-top: solid black;
+    border-top: solid black 0.1em;
 }
 footer > * {
     padding: 0.1rem;
     padding-right: 0.5rem;
+    padding-left: 4vw;
     color: black;
 }
 
@@ -46,8 +47,9 @@ footer > * {
 
 
 .login_form {
-    padding: 5vw;
-    padding-top: 1vw;
+    padding: 10vw;
+    padding-top: 7vw;
+    padding-left: 4vw;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -80,7 +82,7 @@ footer > * {
     flex-direction: column;
     align-items: end;
     background-color: #9B9181;
-    border: solid black;
+    border: solid black 0.15em;
     border-bottom-left-radius: 25%;
     border-right: none;
 }
@@ -102,7 +104,7 @@ footer > * {
     flex: 1;
     text-align: right;
     background-color: #9B9181;
-    border: solid black;
+    border: solid black 0.15em;
     border-bottom: none;
 }
 .game_log_container > * {
@@ -243,7 +245,7 @@ footer > * {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .hero_image {
         width: auto;
         height: 5rem;
