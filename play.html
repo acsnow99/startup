@@ -63,7 +63,7 @@
               <button type="button" id="game_button_fight" class="game_button_fight btn btn-primary btn-lg">Fight!</button>
               <div class="game_buttons_container_internal">
                 <button type="button" id="game_button_heal" class="game_button_heal btn btn-success"><div id="healing_display">Heal! 0</div></button>
-                <button type="button" id="game_button_run" class="game_button_run btn btn-secondary btn-sm">Run! (-200g)</button>
+                <button type="button" id="game_button_run" class="game_button_run btn btn-secondary btn-sm"><div id="run_display">Run!</div></button>
               </div>
             </div>
           </div>
@@ -76,6 +76,7 @@
           <h3 class="game_log_header">Adventure Log:</h3>
         </div>
       </div>
+      <script src="game_buttons.js"></script>
       <script>
         function update_username_display() {
           const local_username = localStorage.getItem("username");
@@ -124,6 +125,22 @@
             healing_parent_object.removeChild(existing_healing_display);
           }
           healing_parent_object.appendChild(healing_display);
+        }
+        function update_run_display() {
+          const run_display = document.createElement("div");
+          
+          run_display.id = "run_display";
+          if (run_cost != undefined) {
+            run_display.textContent = "Run! (" + String(run_cost) + "g)";
+          } else {
+            run_display.textContent = "Run!";
+          }
+          const run_parent_object = document.querySelector("#game_button_run");
+          let existing_run_display = document.getElementById("run_display");
+          if (existing_run_display != null) {
+            run_parent_object.removeChild(existing_run_display);
+          }
+          run_parent_object.appendChild(run_display);
         }
         function update_health_display() {
           const local_username = localStorage.getItem("username");
@@ -189,8 +206,10 @@
           const log_message_element = document.createElement("p");
           log_message_element.id = "log" + String(log_count++);
           if (log_count > log_max) {
-            let log_old = document.getElementById("log" + String(log_count - log_max));
+            let log_old = document.getElementById("log" + String(log_count - log_max - 1));
             log_parent.removeChild(log_old);
+            let log_second_old = document.getElementById("log" + String(log_count - log_max));
+            log_second_old.setAttribute("style", "opacity: 20%")
           }
           log_message_element.textContent = message;
           log_parent.appendChild(log_message_element);
@@ -200,7 +219,8 @@
         update_score_display();
         update_healing_display();
         update_health_display();
-        const log_max = 15;
+        update_run_display();
+        const log_max = 10;
         let log_count = 0;
         setTimeout(() => update_log_display("karen321 defeated a landsquid and earned 304g!"), 5000);
         setTimeout(() => update_log_display("karen321 was defeated by a landsquid and lost 2000g!"), 10000);
@@ -209,7 +229,5 @@
     <footer>
       <p>by Alex Snow - <a href="https://github.com/acsnow99/startup">GitHub</a></p>
     </footer>
-
-    <script src="game_buttons.js"></script>
 
   </body>

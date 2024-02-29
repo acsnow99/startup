@@ -8,10 +8,11 @@ const health_access_string = "health" + local_username;
 const enemy_health_access_string = "enemy_health" + local_username;
 const monster_img_src = ["images/monster.jpg", "images/monster1.jpeg"];
 const monster_names = ["zombie", "landsquid"];
-const run_cost = -400;
+const run_cost = -200;
 const base_win_score = 200;
 const win_score_multiplier = 102;
 const lose_cost = -1000;
+const take_damage_chance = 0.4;
 
 document.querySelector("#game_button_run")?.addEventListener('click', function(event) { 
     console.log("run button clicked");
@@ -31,9 +32,15 @@ document.querySelector("#game_button_heal")?.addEventListener('click', function(
 document.querySelector("#game_button_fight")?.addEventListener('click', function(event) {
     console.log("fight button clicked");
     const random_seed = Math.random();
-    update_enemy_health_count(-1);
-    if (random_seed < 0.5) {
+    if (random_seed < take_damage_chance) {
         update_health_count(-1);
+        // enemy will not take damage if the player just died
+        const local_health = localStorage.getItem(health_access_string);
+        if (local_health < 3) {
+            update_enemy_health_count(-1);
+        }
+    } else {
+        update_enemy_health_count(-1);
     }
 });
 
