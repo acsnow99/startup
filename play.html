@@ -73,7 +73,6 @@
           </div>
         </div>
         <div class="game_log_container" id="game_log_container">
-          <h3 class="game_log_header">Adventure Log:</h3>
         </div>
       </div>
       <script src="game_buttons.js"></script>
@@ -205,10 +204,15 @@
           const log_parent = document.getElementById("game_log_container");
           const log_message_element = document.createElement("p");
           log_message_element.id = "log" + String(log_count++);
-          if (log_count > log_max) {
+          if (window.innerWidth > less_log_screen_width_limit && log_count > log_max) {
             let log_old = document.getElementById("log" + String(log_count - log_max - 1));
             log_parent.removeChild(log_old);
             let log_second_old = document.getElementById("log" + String(log_count - log_max));
+            log_second_old.setAttribute("style", "opacity: 20%")
+          } else if (window.innerWidth <= less_log_screen_width_limit && log_count > less_log_max) {
+            let log_old = document.getElementById("log" + String(log_count - less_log_max - 1));
+            log_parent.removeChild(log_old);
+            let log_second_old = document.getElementById("log" + String(log_count - less_log_max));
             log_second_old.setAttribute("style", "opacity: 20%")
           }
           log_message_element.textContent = message;
@@ -220,7 +224,9 @@
         update_healing_display();
         update_health_display();
         update_run_display();
-        const log_max = 10;
+        const log_max = 8;
+        const less_log_max = 4;
+        const less_log_screen_width_limit = 600;
         let log_count = 0;
         setTimeout(() => update_log_display("karen321 defeated a landsquid and earned 304g!"), 5000);
         setTimeout(() => update_log_display("karen321 was defeated by a landsquid and lost 2000g!"), 10000);

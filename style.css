@@ -106,11 +106,19 @@ footer > * {
     background-color: #9B9181;
     border: solid black 0.15em;
     border-bottom: none;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: start;
 }
 .game_log_container > * {
     padding-right: 1rem;
     padding-left: 0.5rem;
     color: black;
+}
+@media screen and (max-width: 600px) {
+    .game_log_container {
+        flex: auto;
+    }
 }
 
 
@@ -118,6 +126,7 @@ footer > * {
     flex: 4;
     display: flex;
     touch-action: manipulation;
+    height: 70%;
 }
 
 .game_images_and_buttons_container {
