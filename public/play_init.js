@@ -1,11 +1,13 @@
 async function getGamedata() {
+    let username = localStorage.getItem("username");
     let gamedata = {};
     try {
-        const response = await fetch("/api/gamedata?name=Alex");
+        let query_url = "/api/gamedata?name=" + username;
+        const response = await fetch(query_url);
         gamedata = await response.json();
         console.log(gamedata);
     } catch {
-        console.log("Error: could not fetch gamedata for Alex");
+        console.log("Error: could not fetch gamedata for " + username);
     }
 }
 
