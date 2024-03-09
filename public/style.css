@@ -59,7 +59,10 @@ footer > * {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    align-items: flex-end;
+    align-items: flex-start;
+}
+.btn-login {
+    align-self: flex-end;
 }
 
 
