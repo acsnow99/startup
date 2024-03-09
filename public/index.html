@@ -40,36 +40,7 @@
           <button id="btn_submit_login" class="btn btn-primary">Login</button>
         </div>
       </form>
-      <script>
-        console.log("Form submit script loaded")
-        username = "";
-        submit_login_and_advance_to_play = function(event) {
-          const input_username = document.querySelector("#username").value;
-          const score_access_string = "score" + input_username;
-          const local_score = localStorage.getItem(score_access_string);
-          if (local_score == null) {
-            localStorage.setItem(score_access_string, 500);
-          }
-          const healing_access_string = "healing" + input_username;
-          const local_healing = localStorage.getItem(healing_access_string);
-          if (local_healing == null) {
-            localStorage.setItem(healing_access_string, 1);
-          }
-          const health_access_string = "health" + input_username;
-          const local_health = localStorage.getItem(health_access_string);
-          if (local_health == null) {
-            localStorage.setItem(health_access_string, 2);
-          }
-          const enemy_health_access_string = "enemy_health" + input_username;
-          const local_enemy_health = localStorage.getItem(enemy_health_access_string);
-          if (local_enemy_health == null) {
-            localStorage.setItem(enemy_health_access_string + "max", 2);
-            localStorage.setItem(enemy_health_access_string, 2);
-          }
-          localStorage.setItem("username", input_username);
-          window.location.href = "play.html";
-        }
-      </script>
+      <script src="login.js"></script>
     </main>
     <footer style="align-items: start">
       <p>by Alex Snow - <a href="https://github.com/acsnow99/startup">GitHub</a></p>

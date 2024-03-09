@@ -12,6 +12,19 @@ app.get("/api/gamedata", (request, response) => {
     response.send(gamedata.get(name));
 });
 
+app.post("/api/newuser", (request, response) => {
+    let name_request = request.query["name"];
+    let pass_request = request.query["password"];
+    let current_name_entry = auth.get(name_request);
+    if (current_name_entry === undefined) {
+        auth.set(name_request, { password : pass_request })
+        response.send();
+    } else {
+        response.status(409);
+        response.send("Error: username taken");
+    }
+});
+
 
 app.listen(port);
 
@@ -25,3 +38,10 @@ let gamedata_entry = {
     enemy_health : 1
 }
 gamedata.set("Alex", gamedata_entry);
+
+
+let auth = new Map();
+let auth_entry = {
+    password : "pass"
+}
+auth.set("Alex", auth_entry);
