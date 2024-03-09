@@ -35,7 +35,7 @@ submit_login_and_advance_to_play = async function(event) {
         window.location.href = "play.html";
     } catch (error) {
         let username_parent = document.querySelector("#login_form");
-        let username_taken_element = document.createElement("p");
+        username_taken_element = document.createElement("p");
         username_taken_element.className = "username_taken_message";
         username_taken_element.id = "username_taken_message";
         username_taken_element.innerText = "Hero name already taken...";

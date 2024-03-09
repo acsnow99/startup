@@ -15,13 +15,19 @@ app.get("/api/gamedata", (request, response) => {
 app.post("/api/newuser", (request, response) => {
     let name_request = request.query["name"];
     let pass_request = request.query["password"];
-    let current_name_entry = auth.get(name_request);
-    if (current_name_entry === undefined) {
-        auth.set(name_request, { password : pass_request })
+    let current_auth_entry = auth.get(name_request);
+    if (current_auth_entry === undefined) {
+        auth.set(name_request, { password : pass_request });
+        response.status(200);
         response.send();
     } else {
-        response.status(409);
-        response.send("Error: username taken");
+        if (pass_request != current_auth_entry.password) {
+            response.status(409);
+            response.send("Error: username taken");
+        } else {
+            response.status(200);
+            response.send();
+        }
     }
 });
 
