@@ -8,7 +8,8 @@ app.use(express.static("public"));
 var api_router = express.Router();
 
 app.get("/api/gamedata", (request, response) => {
-    response.send(gamedata.get("Alex"));
+    let name = request.query["name"];
+    response.send(gamedata.get(name));
 });
 
 
@@ -21,6 +22,6 @@ let gamedata_entry = {
     health : 1,
     healing : 4,
     enemy_index : 1,
-    enemy_health : 1,
+    enemy_health : 1
 }
 gamedata.set("Alex", gamedata_entry);

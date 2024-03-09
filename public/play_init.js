@@ -1,7 +1,7 @@
 async function getGamedata() {
     let gamedata = {};
     try {
-        const response = await fetch("/api/gamedata?Alex");
+        const response = await fetch("/api/gamedata?name=Alex");
         gamedata = await response.json();
         console.log(gamedata);
     } catch {
