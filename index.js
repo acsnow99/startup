@@ -18,6 +18,7 @@ app.post("/api/newuser", (request, response) => {
     let current_auth_entry = auth.get(name_request);
     if (current_auth_entry === undefined) {
         auth.set(name_request, { password : pass_request });
+        gamedata.set(name_request, { ...gamedata_entry_default })
         response.status(200);
         response.send();
     } else {
@@ -36,14 +37,16 @@ app.listen(port);
 
 
 let gamedata = new Map();
-let gamedata_entry = {
-    score : 5678,
-    health : 1,
-    healing : 4,
+let gamedata_entry_default = {
+    score : 1002,
+    health : 2,
+    health_max : 3,
+    healing : 3,
     enemy_index : 1,
-    enemy_health : 1
+    enemy_health : 3,
+    enemy_health_max : 3
 }
-gamedata.set("Alex", gamedata_entry);
+gamedata.set("Alex", gamedata_entry_default);
 
 
 let auth = new Map();
