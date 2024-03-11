@@ -8,8 +8,15 @@ app.use(express.static("public"));
 var api_router = express.Router();
 
 app.get("/api/gamedata", (request, response) => {
-    let name = request.query["name"];
-    response.send(gamedata.get(name));
+    let name_request = request.query["name"];
+    const gamedata_request = gamedata.get(name_request);
+    if (gamedata_request === undefined) {
+        response.status(404);
+        response.send("Error: could not find gamedata for user " + name_request);
+    } else {
+        response.status(200);
+        response.send(gamedata_request)
+    }
 });
 
 app.post("/api/newuser", (request, response) => {
@@ -30,6 +37,12 @@ app.post("/api/newuser", (request, response) => {
             response.send();
         }
     }
+});
+
+app.post("/api/gamedata", (request, response) => {
+    let name_request = request.query["name"];
+    const gamedata_set = request.query["gamedata"];
+    gamedata.set(name_request, gamedata_set);
 });
 
 
