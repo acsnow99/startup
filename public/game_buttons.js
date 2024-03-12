@@ -1,13 +1,14 @@
 console.log("Game buttons script loaded");
 
-let monster_index = 0;
+let enemy_index = 0;
 const local_username = localStorage.getItem("username");
 const score_access_string = "score" + local_username;
 const healing_access_string = "healing" + local_username;
 const health_access_string = "health" + local_username;
 const enemy_health_access_string = "enemy_health" + local_username;
-const monster_img_src = ["images/monster.jpg", "images/monster1.jpeg"];
-const monster_names = ["zombie", "landsquid"];
+const enemy_index_access_string = "enemy_index" + local_username;
+const enemy_img_src = ["images/monster.jpg", "images/monster1.jpeg"];
+const enemy_names = ["zombie", "landsquid"];
 const run_cost = -200;
 const base_win_score = 200;
 const win_score_multiplier = 102;
@@ -58,8 +59,8 @@ function update_health_count(count) {
     const local_health = localStorage.getItem(health_access_string);
     let new_health = Number(local_health) + count;
     if (new_health <= 0) {
-        alert("You were defeated by a " + monster_names[monster_index] + "! You lost " + String(Math.abs(lose_cost)) + "g.");
-        update_log_display(local_username + " was defeated by a " + monster_names[monster_index] + " and lost " + String(Math.abs(lose_cost)) + "g!");
+        alert("You were defeated by a " + enemy_names[enemy_index] + "! You lost " + String(Math.abs(lose_cost)) + "g.");
+        update_log_display(local_username + " was defeated by a " + enemy_names[enemy_index] + " and lost " + String(Math.abs(lose_cost)) + "g!");
         console.log("player lost");
         new_health = 3;
         update_score_count(lose_cost);
@@ -81,7 +82,7 @@ function update_enemy_health_count(count, player_gets_score_for_win=true) {
         localStorage.setItem(enemy_health_access_string + "max", new_enemy_health);
         if (player_gets_score_for_win) {
             const score_win = base_win_score + win_score_multiplier * local_enemy_health_max;
-            const message = local_username + " defeated a " + monster_names[monster_index] + " and earned " + String(score_win) + "g!";
+            const message = local_username + " defeated a " + enemy_names[enemy_index] + " and earned " + String(score_win) + "g!";
             update_log_display(message);
             update_score_count(score_win);
         }
@@ -99,12 +100,27 @@ function update_score_count(count) {
     if (new_score < 0) {
         new_score = 0;
     }
+    update_gamedata_server();
     localStorage.setItem(score_access_string, new_score);
     update_score_display();
 }
 function update_monster_image() {
-    const monster_img_obj = document.querySelector("#monster_image");
-    monster_index = (monster_index + 1) % 2;
-    monster_img_obj.src = monster_img_src[monster_index];
+    const enemy_img_obj = document.querySelector("#monster_image");
+    enemy_index = (enemy_index + 1) % 2;
+    enemy_img_obj.src = enemy_img_src[enemy_index];
+}
+
+async function update_gamedata_server() {
+    const gamedata = {
+        enemy_health: localStorage.getItem(enemy_health_access_string),
+        enemy_health_max: localStorage.getItem(enemy_health_access_string + "max"),
+        enemy_index: enemy_index,
+        healing: localStorage.getItem(healing_access_string),
+        health: localStorage.getItem(health_access_string),
+        health_max: 3,
+        score: localStorage.getItem(score_access_string),
+    }
+    let query_url = "/api/gamedata?name=" + local_username + "&gamedata=" + JSON.stringify(gamedata);
+    const response = await fetch(query_url, { method : "POST", contentType: "application/JSON" });
 }
 

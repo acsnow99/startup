@@ -19,7 +19,7 @@ app.get("/api/gamedata", (request, response) => {
     }
 });
 
-app.post("/api/newuser", (request, response) => {
+app.post("/api/login", (request, response) => {
     let name_request = request.query["name"];
     let pass_request = request.query["password"];
     let current_auth_entry = auth.get(name_request);
@@ -41,8 +41,15 @@ app.post("/api/newuser", (request, response) => {
 
 app.post("/api/gamedata", (request, response) => {
     let name_request = request.query["name"];
-    const gamedata_set = request.query["gamedata"];
-    gamedata.set(name_request, gamedata_set);
+    const gamedata_set = JSON.parse(request.query["gamedata"]);
+    if (gamedata_set === undefined) {
+        response.status(400);
+        response.send("Error: Missing gamedata in request");
+    } else {
+        gamedata.set(name_request, gamedata_set);
+        response.status(200);
+        response.send();
+    }
 });
 
 

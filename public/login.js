@@ -25,9 +25,9 @@ submit_login_and_advance_to_play = async function(event) {
         localStorage.setItem(enemy_health_access_string, 2);
     }
     localStorage.setItem("username", input_username);
-
+    
     try {
-        let query_url = "/api/newuser?name=" + input_username + "&password=" + input_password;
+        let query_url = "/api/login?name=" + input_username + "&password=" + input_password;
         const response = await fetch(query_url, { method : "POST" });
         if (response.status == 409) {
             throw new Error("Error: username taken");
