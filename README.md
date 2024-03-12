@@ -74,3 +74,13 @@ Imagine a world of brave heroes and warmongering monsters that is available at y
     - Type of enemy currently faced
 - **WebSocket data support** - Game logs are displayed for what the player does in-game, and timeouts are used to display mock game logs from other players
 - **Application interaction logic** - Game functions properly - player can fight (at their own risk), heal themselves, or choose to run. A random number generator API will be used to randomize the game functionality, such as randomizing when the player takes damage and what monster appears when one is defeated. 
+
+
+
+## 3/11/24 Service Deliverable:
+### Changes:
+- **HTTP service through Node.js and Express**
+- **Middleware** serves up front end files, including the html pages, game images, and javascript files
+- **Third party service** provides random number generation to further randomize game events
+- **Backend endpoints** allow user to save and load game data from anywhere, based on their username. Each username is also locked behind the password first used for it. 
+- **Frontend calls backend endpoints** to check password on login, save game data after important game events, and load it on login. 
