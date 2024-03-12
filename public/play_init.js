@@ -1,3 +1,6 @@
+// script depends on game_buttons.js
+
+
 async function get_gamedata() {
     let username = localStorage.getItem("username");
     let gamedata = {};
@@ -160,12 +163,20 @@ function update_log_display(message) {
     log_parent.appendChild(log_message_element);
 }
 
+function update_enemy_image() {
+    const enemy_img_obj = document.querySelector("#monster_image");
+    const enemy_index = localStorage.getItem(enemy_index_access_string);
+    const enemy_image = enemy_img_src[enemy_index];
+    enemy_img_obj.src = enemy_image;
+}
+
 function update_display() {
     update_username_display();
     update_score_display();
     update_healing_display();
     update_health_display();
     update_run_display();
+    update_enemy_image();
 }
 
 async function init_display() {

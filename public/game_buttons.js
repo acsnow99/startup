@@ -7,7 +7,7 @@ const healing_access_string = "healing" + local_username;
 const health_access_string = "health" + local_username;
 const enemy_health_access_string = "enemy_health" + local_username;
 const enemy_index_access_string = "enemy_index" + local_username;
-const enemy_img_src = ["images/monster.jpg", "images/monster1.jpeg"];
+const enemy_img_src = ["images/enemy.jpg", "images/enemy1.jpeg"];
 const enemy_names = ["zombie", "landsquid"];
 const run_cost = -200;
 const base_win_score = 200;
@@ -34,12 +34,12 @@ document.querySelector("#game_button_heal")?.addEventListener('click', function(
     }
 });
 
-// monster health -= 1; a chance of player health -= 1; 
-//  if monster or player is defeated, server backup is updated
+// enemy health -= 1; a chance of player health -= 1; 
+//  if enemy or player is defeated, server backup is updated
 document.querySelector("#game_button_fight")?.addEventListener('click', function(event) {
     console.log("fight button clicked");
     const random_seed = Math.random();
-    // if monster will be defeated, update server backup
+    // if enemy will be defeated, update server backup
     var will_update_server = localStorage.getItem(enemy_health_access_string) <= 1;
     if (random_seed < take_damage_chance) {
         update_health_count(-1);
@@ -94,7 +94,7 @@ function update_enemy_health_count(count, player_gets_score_for_win=true) {
             update_log_display(message);
             update_score_count(score_win);
         }
-        update_monster_image();
+        update_enemy_image_index();
     }
     localStorage.setItem(enemy_health_access_string, new_enemy_health);
     update_health_display();
@@ -111,10 +111,10 @@ function update_score_count(count) {
     localStorage.setItem(score_access_string, new_score);
     update_score_display();
 }
-function update_monster_image() {
-    const enemy_img_obj = document.querySelector("#monster_image");
-    enemy_index = (enemy_index + 1) % 2;
-    enemy_img_obj.src = enemy_img_src[enemy_index];
+function update_enemy_image_index() {
+    const enemy_index = (localStorage.getItem(enemy_index_access_string) + 1) % 2;
+    localStorage.setItem(enemy_index_access_string, enemy_index);
+    update_enemy_image();
 }
 
 async function update_gamedata_server() {
