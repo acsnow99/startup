@@ -13,7 +13,10 @@ const run_cost = -200;
 const base_win_score = 200;
 const win_score_multiplier = 102;
 const lose_cost = -1000;
-const take_damage_chance = 0.4;
+const random_min = 0;
+const random_max = 1000;
+const take_damage_chance = 453;
+const random_numbers = get_random_numbers(0, 1000);
 
 document.querySelector("#game_button_run")?.addEventListener('click', function(event) { 
     console.log("run button clicked");
@@ -36,9 +39,9 @@ document.querySelector("#game_button_heal")?.addEventListener('click', function(
 
 // enemy health -= 1; a chance of player health -= 1; 
 //  if enemy or player is defeated, server backup is updated
-document.querySelector("#game_button_fight")?.addEventListener('click', function(event) {
+document.querySelector("#game_button_fight")?.addEventListener('click', async function(event) {
     console.log("fight button clicked");
-    const random_seed = Math.random();
+    const random_seed = await get_random_number(random_min, random_max);
     // if enemy will be defeated, update server backup
     var will_update_server = localStorage.getItem(enemy_health_access_string) <= 1;
     if (random_seed < take_damage_chance) {
@@ -129,5 +132,12 @@ async function update_gamedata_server() {
     }
     let query_url = "/api/gamedata?name=" + local_username + "&gamedata=" + JSON.stringify(gamedata);
     const response = await fetch(query_url, { method : "POST", contentType: "application/JSON" });
+}
+
+async function get_random_numbers(min, max) {
+    const request_url = "https://www.random.org/integers/?num=50&min=" + min + "&max=" + max + "&col=1&base=10&format=plain&rnd=new";
+    const response = await fetch(request_url);
+    const response_text = await response.text();
+    return response_text.slice(0, response_text.length - 1);
 }
 
