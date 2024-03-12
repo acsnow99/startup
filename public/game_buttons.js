@@ -118,8 +118,9 @@ function update_score_count(count) {
     update_score_display();
 }
 function update_enemy_image_index() {
-    const enemy_index = (localStorage.getItem(enemy_index_access_string) + 1) % 2;
-    localStorage.setItem(enemy_index_access_string, enemy_index);
+    const enemy_index_current = Number(localStorage.getItem(enemy_index_access_string));
+    const enemy_index_updated = (enemy_index_current + 1) % 2;
+    localStorage.setItem(enemy_index_access_string, enemy_index_updated);
     update_enemy_image();
 }
 
