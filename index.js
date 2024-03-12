@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = 4000;
 
 app.use(express.static("public"));
 
@@ -61,10 +61,10 @@ let gamedata_entry_default = {
     score : 1002,
     health : 2,
     health_max : 3,
-    healing : 3,
+    healing : 5,
     enemy_index : 1,
-    enemy_health : 3,
-    enemy_health_max : 3
+    enemy_health : 2,
+    enemy_health_max : 2
 }
 gamedata.set("Alex", gamedata_entry_default);
 

@@ -16,7 +16,7 @@ const lose_cost = -1000;
 const random_min = 0;
 const random_max = 1000;
 const random_numbers_count = 50;
-const take_damage_chance = 453;
+const take_damage_chance = 375;
 var random_numbers = [100, 500, 300, 700, 500, 300];
 get_random_numbers(random_min, random_max, random_numbers_count);
 
