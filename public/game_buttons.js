@@ -34,9 +34,13 @@ document.querySelector("#game_button_heal")?.addEventListener('click', function(
     }
 });
 
+// monster health -= 1; a chance of player health -= 1; 
+//  if monster or player is defeated, server backup is updated
 document.querySelector("#game_button_fight")?.addEventListener('click', function(event) {
     console.log("fight button clicked");
     const random_seed = Math.random();
+    // if monster will be defeated, update server backup
+    var will_update_server = localStorage.getItem(enemy_health_access_string) <= 1;
     if (random_seed < take_damage_chance) {
         update_health_count(-1);
         // enemy will not take damage if the player just died
@@ -44,9 +48,13 @@ document.querySelector("#game_button_fight")?.addEventListener('click', function
         if (local_health < 3) {
             update_enemy_health_count(-1);
         }
+        // if player has been defeated, update server backup
+        will_update_server = will_update_server || local_health <= 0;
     } else {
         update_enemy_health_count(-1);
     }
+
+    if (will_update_server) { update_gamedata_server(); }
 });
 
 function update_healing_count(count) {
@@ -100,7 +108,6 @@ function update_score_count(count) {
     if (new_score < 0) {
         new_score = 0;
     }
-    update_gamedata_server();
     localStorage.setItem(score_access_string, new_score);
     update_score_display();
 }
