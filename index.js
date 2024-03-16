@@ -2,10 +2,16 @@
 const express = require('express');
 const app = express();
 const port = 4000;
-
 app.use(express.static("public"));
 
-var api_router = express.Router();
+const { MongoClient } = require('mongodb');
+const config = require('./dbConfig.json');
+
+const url = `mongodb+srv://${config.username}:${config.password}@${config.hostname}`;
+const client = new MongoClient(url);
+const db = client.db('startup');
+const scoreCollection = db.collection('gamedata');
+
 
 app.get("/api/gamedata", (request, response) => {
     let name_request = request.query["name"];
