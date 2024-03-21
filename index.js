@@ -53,7 +53,7 @@ app.post("/api/gamedata", (request, response) => {
         response.status(400);
         response.send("Error: Missing gamedata in request");
     } else {
-        gamedata.set(name_request, gamedata_set);
+        save_game_data(name_request, gamedata_set);
         response.status(200);
         response.send();
     }
@@ -86,8 +86,21 @@ async function set_game_data(name_request, game_data) {
 }
 
 async function save_game_data(name_request, game_data) {
-    game_data.username = name_request;
-    const result = await game_data_collection.save({ username: name_request }, game_data);
+    let filter = {
+        username: name_request
+    }
+    let update = {
+        $set: {
+            score: game_data.score,
+            health: game_data.health,
+            health_max: game_data.health_max,
+            healing: game_data.healing,
+            enemy_index: game_data.enemy_index,
+            enemy_health: game_data.enemy_health,
+            enemy_health_max: game_data.enemy_health_max
+        }
+    }
+    const result = await game_data_collection.updateOne(filter, update);
     return result;
 }
 

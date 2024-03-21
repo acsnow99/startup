@@ -127,7 +127,7 @@ function update_enemy_image_index() {
 
 async function update_gamedata_server() {
     const gamedata = {
-        _id: localStorage.getItem(gamedata_id_access_string),
+        //_id: localStorage.getItem(gamedata_id_access_string),
         enemy_health: localStorage.getItem(enemy_health_access_string),
         enemy_health_max: localStorage.getItem(enemy_health_access_string + "max"),
         enemy_index: enemy_index,
