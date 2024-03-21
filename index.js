@@ -10,18 +10,18 @@ const config = require('./dbConfig.json');
 const url = `mongodb+srv://${config.username}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('startup');
-const scoreCollection = db.collection('gamedata');
+const gameDataCollection = db.collection('gamedata');
 
 
-app.get("/api/gamedata", (request, response) => {
+app.get("/api/gamedata", async (request, response) => {
     let name_request = request.query["name"];
-    const gamedata_request = gamedata.get(name_request);
-    if (gamedata_request === undefined) {
+    const gamedata_request = await get_game_data(name_request);
+    if (gamedata_request.size() < 1) {
         response.status(404);
         response.send("Error: could not find gamedata for user " + name_request);
     } else {
         response.status(200);
-        response.send(gamedata_request)
+        response.send(gamedata_request[0]);
     }
 });
 
@@ -57,6 +57,18 @@ app.post("/api/gamedata", (request, response) => {
         response.send();
     }
 });
+
+
+
+function get_game_data(username_request) {
+    const query = { username: username_request };
+    const options = {
+      limit: 1,
+    };
+    const cursor = gameDataCollection.find(query, options);
+    return cursor.toArray();
+  }
+
 
 
 app.listen(port);
