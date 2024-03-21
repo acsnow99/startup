@@ -2,6 +2,7 @@ console.log("Game buttons script loaded");
 
 let enemy_index = 0;
 const local_username = localStorage.getItem("username");
+const gamedata_id_access_string = "gamedata_id";
 const score_access_string = "score" + local_username;
 const healing_access_string = "healing" + local_username;
 const health_access_string = "health" + local_username;
@@ -126,6 +127,7 @@ function update_enemy_image_index() {
 
 async function update_gamedata_server() {
     const gamedata = {
+        _id: localStorage.getItem(gamedata_id_access_string),
         enemy_health: localStorage.getItem(enemy_health_access_string),
         enemy_health_max: localStorage.getItem(enemy_health_access_string + "max"),
         enemy_index: enemy_index,

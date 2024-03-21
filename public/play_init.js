@@ -1,6 +1,5 @@
 // script depends on game_buttons.js
 
-
 async function get_gamedata() {
     let username = localStorage.getItem("username");
     let gamedata = {};
@@ -9,6 +8,7 @@ async function get_gamedata() {
         const response = await fetch(query_url);
         gamedata = await response.json();
         console.log(gamedata);
+        localStorage.setItem(gamedata_id_access_string, gamedata._id);
         localStorage.setItem(score_access_string, gamedata.score);
         localStorage.setItem(enemy_health_access_string, gamedata.enemy_health);
         localStorage.setItem(enemy_health_access_string + "max", gamedata.enemy_health_max);
