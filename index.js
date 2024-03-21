@@ -9,14 +9,15 @@ const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.username}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-const db = client.db('startup');
-const gameDataCollection = db.collection('gamedata');
+const db = client.db('startupdata');
+const game_data_collection = db.collection('gamedata');
+const auth_collection = db.collection('auth');
 
 
 app.get("/api/gamedata", async (request, response) => {
     let name_request = request.query["name"];
     const gamedata_request = await get_game_data(name_request);
-    if (gamedata_request.size() < 1) {
+    if (gamedata_request.length < 1) {
         response.status(404);
         response.send("Error: could not find gamedata for user " + name_request);
     } else {
@@ -25,17 +26,17 @@ app.get("/api/gamedata", async (request, response) => {
     }
 });
 
-app.post("/api/login", (request, response) => {
+app.post("/api/login", async (request, response) => {
     let name_request = request.query["name"];
     let pass_request = request.query["password"];
-    let current_auth_entry = auth.get(name_request);
-    if (current_auth_entry === undefined) {
-        auth.set(name_request, { password : pass_request });
-        gamedata.set(name_request, { ...gamedata_entry_default })
+    let auth_request = await get_auth(name_request);
+    if (auth_request.length < 1) {
+        await set_auth(name_request, pass_request);
+        await set_game_data(name_request, { ...gamedata_entry_default });
         response.status(200);
         response.send();
     } else {
-        if (pass_request != current_auth_entry.password) {
+        if (pass_request != auth_request[0].password) {
             response.status(409);
             response.send("Error: username taken");
         } else {
@@ -60,14 +61,56 @@ app.post("/api/gamedata", (request, response) => {
 
 
 
+(async function testConnection() {
+    await client.connect();
+    await db.command({ ping: 1 });
+    console.log("Database available");
+  })().catch((ex) => {
+    console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+    process.exit(1);
+  });
+
 function get_game_data(username_request) {
     const query = { username: username_request };
     const options = {
-      limit: 1,
+        limit: 1,
     };
-    const cursor = gameDataCollection.find(query, options);
+    const cursor = game_data_collection.find(query, options);
     return cursor.toArray();
-  }
+}
+
+async function set_game_data(name_request, game_data) {
+    game_data.username = name_request;
+    const result = await game_data_collection.insertOne(game_data);
+    return result;
+}
+
+async function save_game_data(name_request, game_data) {
+    game_data.username = name_request;
+    const result = await game_data_collection.save({ username: name_request }, game_data);
+    return result;
+}
+
+
+function get_auth(username_request, password_request) {
+    const query = { 
+        username: username_request
+    };
+    const options = {
+        limit: 1
+    };
+    const cursor = auth_collection.find(query, options);
+    return cursor.toArray();
+}
+
+async function set_auth(name_request, password_request) {
+    auth_entry = {
+        username: name_request,
+        password: password_request
+    }
+    const result = await auth_collection.insertOne(auth_entry);
+    return result;
+}
 
 
 
