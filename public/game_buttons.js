@@ -81,6 +81,7 @@ function update_health_count(count) {
         update_score_count(lose_cost);
         update_score_display();
         update_enemy_health_count(-20, false);
+        update_gamedata_server();
     }
     localStorage.setItem(health_access_string, new_health);
     console.log("player health decreased");

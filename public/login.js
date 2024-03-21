@@ -29,8 +29,8 @@ submit_login_and_advance_to_play = async function(event) {
     try {
         let query_url = "/api/login?name=" + input_username + "&password=" + input_password;
         const response = await fetch(query_url, { method : "POST" });
-        if (response.status == 409) {
-            throw new Error("Error: username taken");
+        if (response.status == 401) {
+            throw new Error("Error: incorrect password");
         }
         console.log("Sent username to server");
         window.location.href = "play.html";
@@ -39,7 +39,7 @@ submit_login_and_advance_to_play = async function(event) {
         let username_taken_element = document.createElement("p");
         username_taken_element.className = "username_taken_message";
         username_taken_element.id = "username_taken_message";
-        username_taken_element.innerText = "Hero name already taken or password incorrect...";
+        username_taken_element.innerText = "Password incorrect...";
         username_parent.appendChild(username_taken_element);
 
         console.log(error.message);
