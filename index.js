@@ -32,6 +32,11 @@ app.post("/api/register", async (request, response) => {
         }
         await set_auth(user_obj);
         await set_game_data(name_request, { ...gamedata_entry_default });
+        response.cookie('token', user_obj.token, {
+            secure: true,
+            httpOnly: true,
+            sameSite: 'strict',
+        });
         response.status(200);
         response.send(user_obj);
     } else {

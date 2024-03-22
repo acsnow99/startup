@@ -12,7 +12,6 @@ submit_login_and_advance_to_play = async function(event) {
             throw new Error("Error: incorrect password");
         }
         let body = await response.json();
-        
         console.log("Sent username to server");
         window.location.href = "play.html";
     } catch (error) {

@@ -139,6 +139,9 @@ async function update_gamedata_server() {
     }
     let query_url = "/api/gamedata?name=" + local_username + "&gamedata=" + JSON.stringify(gamedata);
     const response = await fetch(query_url, { method : "POST", contentType: "application/JSON" });
+    if (response.status == 401) {
+        window.location.href = "index.html";
+    }
 }
 
 async function get_random_numbers(min, max, count) {
