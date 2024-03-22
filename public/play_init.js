@@ -6,6 +6,9 @@ async function get_gamedata() {
     try {
         let query_url = "/api/gamedata?name=" + username;
         const response = await fetch(query_url);
+        if (response.status == 401) {
+            window.location.href = "index.html";
+        }
         gamedata = await response.json();
         console.log(gamedata);
         localStorage.setItem(gamedata_id_access_string, gamedata._id);
