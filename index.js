@@ -29,6 +29,7 @@ app.get("/api/gamedata", async (request, response) => {
 app.post("/api/register", async (request, response) => {
     let name_request = request.query["name"];
     let pass_request = request.query["password"];
+    let auth_request = await get_auth(name_request);
     if (auth_request.length < 1) {
         await set_auth(name_request, pass_request);
         await set_game_data(name_request, { ...gamedata_entry_default });
