@@ -44,7 +44,7 @@ app.post("/api/login", async (request, response) => {
     let name_request = request.query["name"];
     let pass_request = request.query["password"];
     let auth_request = await get_auth(name_request);
-    if (pass_request != auth_request[0].password) {
+    if (auth_request.length < 1 || pass_request != auth_request[0].password) {
         response.status(401);
         response.send("Error: incorrect password");
     } else {
