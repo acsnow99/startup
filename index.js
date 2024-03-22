@@ -14,21 +14,11 @@ const game_data_collection = db.collection('gamedata');
 const auth_collection = db.collection('auth');
 
 const uuid = require("uuid");
+const cookie_parser = require("cookie-parser");
 
 
+app.use(cookie_parser());
 app.use(express.json());
-
-app.get("/api/gamedata", async (request, response) => {
-    let name_request = request.query["name"];
-    const gamedata_request = await get_game_data(name_request);
-    if (gamedata_request.length < 1) {
-        response.status(404);
-        response.send("Error: could not find gamedata for user " + name_request);
-    } else {
-        response.status(200);
-        response.send(gamedata_request[0]);
-    }
-});
 
 app.post("/api/register", async (request, response) => {
     let name_request = request.query["name"];
@@ -64,14 +54,25 @@ app.post("/api/login", async (request, response) => {
             token: uuid.v4()
         }
         await set_auth(user_obj);
-        response.setHeader("Set-Cookie", "auth=" + user_obj.token);
+        response.cookie('token', user_obj.token, {
+            secure: true,
+            httpOnly: true,
+            sameSite: 'strict',
+        });
         response.status(200);
         response.send(user_obj);
     }
 });
 
-app.post("/api/gamedata", (request, response) => {
+app.post("/api/gamedata", async (request, response) => {
     let name_request = request.query["name"];
+    let token_request = request.cookies["token"];
+    const user_request = await auth_collection.findOne({ token: token_request });
+    if (!user_request) {
+        response.status(401);
+        response.send("Error: Unauthorized");
+        return;
+    }
     const gamedata_set = JSON.parse(request.query["gamedata"]);
     if (gamedata_set === undefined) {
         response.status(400);
@@ -80,6 +81,26 @@ app.post("/api/gamedata", (request, response) => {
         save_game_data(name_request, gamedata_set);
         response.status(200);
         response.send();
+    }
+});
+
+
+app.get("/api/gamedata", async (request, response) => {
+    let name_request = request.query["name"];
+    let token_request = request.cookies["token"];
+    const user_request = await auth_collection.findOne({ token: token_request });
+    if (!user_request) {
+        response.status(401);
+        response.send("Error: Unauthorized");
+        return;
+    }
+    const gamedata_request = await get_game_data(name_request);
+    if (gamedata_request.length < 1) {
+        response.status(404);
+        response.send("Error: could not find gamedata for user " + name_request);
+    } else {
+        response.status(200);
+        response.send(gamedata_request[0]);
     }
 });
 
