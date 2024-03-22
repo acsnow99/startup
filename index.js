@@ -17,6 +17,8 @@ const uuid = require("uuid");
 const cookie_parser = require("cookie-parser");
 const bcrypt = require("bcrypt");
 
+const ws = require("./web_socket.js");
+
 
 app.use(cookie_parser());
 app.use(express.json());
