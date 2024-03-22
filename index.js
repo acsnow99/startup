@@ -15,6 +15,7 @@ const auth_collection = db.collection('auth');
 
 const uuid = require("uuid");
 const cookie_parser = require("cookie-parser");
+const bcrypt = require("bcrypt");
 
 
 app.use(cookie_parser());
@@ -25,9 +26,10 @@ app.post("/api/register", async (request, response) => {
     let pass_request = request.query["password"];
     let auth_request = await get_auth(name_request);
     if (auth_request.length < 1) {
+        let password_hashed = await bcrypt.hash(pass_request, 10);
         let user_obj = {
             username: name_request,
-            password: pass_request,
+            password: password_hashed,
             token: uuid.v4()
         }
         await set_auth(user_obj);
@@ -49,23 +51,30 @@ app.post("/api/login", async (request, response) => {
     let name_request = request.query["name"];
     let pass_request = request.query["password"];
     let auth_request = await get_auth(name_request);
-    if (auth_request.length < 1 || pass_request != auth_request[0].password) {
+    if (auth_request.length < 1) {
         response.status(401);
         response.send("Error: incorrect password");
     } else {
-        let user_obj = {
-            username: name_request,
-            password: pass_request,
-            token: uuid.v4()
+        let password_correct = await bcrypt.compare(pass_request, auth_request[0].password);
+        if (!password_correct) {
+            response.status(401);
+            response.send("Error: incorrect password");
+        } else {
+            let password_hashed = await bcrypt.hash(pass_request, 10);
+            let user_obj = {
+                username: name_request,
+                password: password_hashed,
+                token: uuid.v4()
+            }
+            await set_auth(user_obj);
+            response.cookie('token', user_obj.token, {
+                secure: true,
+                httpOnly: true,
+                sameSite: 'strict',
+            });
+            response.status(200);
+            response.send(user_obj);
         }
-        await set_auth(user_obj);
-        response.cookie('token', user_obj.token, {
-            secure: true,
-            httpOnly: true,
-            sameSite: 'strict',
-        });
-        response.status(200);
-        response.send(user_obj);
     }
 });
 
