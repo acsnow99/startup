@@ -13,6 +13,10 @@ const db = client.db('startupdata');
 const game_data_collection = db.collection('gamedata');
 const auth_collection = db.collection('auth');
 
+const uuid = require("uuid");
+
+
+app.use(express.json());
 
 app.get("/api/gamedata", async (request, response) => {
     let name_request = request.query["name"];
@@ -31,10 +35,15 @@ app.post("/api/register", async (request, response) => {
     let pass_request = request.query["password"];
     let auth_request = await get_auth(name_request);
     if (auth_request.length < 1) {
-        await set_auth(name_request, pass_request);
+        let user_obj = {
+            username: name_request,
+            password: pass_request,
+            token: uuid.v4()
+        }
+        await set_auth(user_obj);
         await set_game_data(name_request, { ...gamedata_entry_default });
         response.status(200);
-        response.send();
+        response.send(user_obj);
     } else {
         response.status(409);
         response.send("Error: username taken");
@@ -49,8 +58,15 @@ app.post("/api/login", async (request, response) => {
         response.status(401);
         response.send("Error: incorrect password");
     } else {
+        let user_obj = {
+            username: name_request,
+            password: pass_request,
+            token: uuid.v4()
+        }
+        await set_auth(user_obj);
+        response.setHeader("Set-Cookie", "auth=" + user_obj.token);
         response.status(200);
-        response.send();
+        response.send(user_obj);
     }
 });
 
@@ -124,21 +140,12 @@ function get_auth(username_request, password_request) {
     return cursor.toArray();
 }
 
-async function set_auth(name_request, password_request) {
-    auth_entry = {
-        username: name_request,
-        password: password_request
-    }
+async function set_auth(auth_entry) {
     const result = await auth_collection.insertOne(auth_entry);
     return result;
 }
 
 
-
-app.listen(port);
-
-
-let gamedata = new Map();
 let gamedata_entry_default = {
     score : 1002,
     health : 2,
@@ -148,11 +155,7 @@ let gamedata_entry_default = {
     enemy_health : 2,
     enemy_health_max : 2
 }
-gamedata.set("Alex", gamedata_entry_default);
 
 
-let auth = new Map();
-let auth_entry = {
-    password : "pass"
-}
-auth.set("Alex", auth_entry);
+app.listen(port);
+
