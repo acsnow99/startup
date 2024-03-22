@@ -103,9 +103,9 @@ app.get("/api/gamedata", async (request, response) => {
     let name_request = request.query["name"];
     let token_request = request.cookies["token"];
     const user_request = await auth_collection.findOne({ token: token_request });
-    if (!user_request) {
+    if (!user_request || !name_request || name_request == 'null') {
         response.status(401);
-        response.send("Error: Unauthorized");
+        response.send("Error: Unauthor4ized");
         return;
     }
     const gamedata_request = await get_game_data(name_request);

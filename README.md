@@ -84,3 +84,14 @@ Imagine a world of brave heroes and warmongering monsters that is available at y
 - **Third party service** provides random number generation to further randomize game events
 - **Backend endpoints** allow user to save and load game data from anywhere, based on their username. Each username is also locked behind the password first used for it. 
 - **Frontend calls backend endpoints** to check password on login, save game data after important game events, and load it on login. 
+
+
+
+## 3/21/24 Service Deliverable:
+### Changes:
+- **Supports new user registration:** User can create a new account by clicking on a link on the login page. 
+- **Supports existing user authentication** on the login page.
+- **Stores app data in MongoDB**
+- **Stores credentials in MongoDB**
+- **Restricts app functionality if user is not authorized:** Unauthorized users are kicked to the login page.
+
