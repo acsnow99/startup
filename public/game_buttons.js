@@ -20,6 +20,8 @@ const random_numbers_count = 50;
 const take_damage_chance = 375;
 var random_numbers = [100, 500, 300, 700, 500, 300];
 get_random_numbers(random_min, random_max, random_numbers_count);
+const score_websocket_message_threshold = 1000;
+let previous_high_score = 0;
 
 document.querySelector("#game_button_run")?.addEventListener('click', function(event) { 
     console.log("run button clicked");
@@ -114,6 +116,13 @@ function update_score_count(count) {
     let new_score = Number(local_score) + count;
     if (new_score < 0) {
         new_score = 0;
+    }
+    if (new_score >= Number(previous_high_score) + score_websocket_message_threshold) {
+        socket.send(`${local_username} reached ${new_score}g!`);
+        previous_high_score = new_score;
+    } else if (new_score < Number(previous_high_score) - score_websocket_message_threshold) {
+        socket.send(`${local_username} dropped down to ${new_score}g.`);
+        previous_high_score = new_score;
     }
     localStorage.setItem(score_access_string, new_score);
     update_score_display();
