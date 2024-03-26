@@ -21,7 +21,11 @@ function web_socket_server(http_server) {
 
         ws.on("message", function message(message) {
             console.log("Message received!");
-            connection.ws.send("Message received!");
+            connections.forEach((conn) => {
+                if (conn !== connection) {
+                    conn.ws.send(message);
+                }
+            });
         });
 
         ws.on("pong", () => {
