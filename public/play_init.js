@@ -9,7 +9,6 @@ async function get_gamedata() {
             window.location.href = "index.html";
         }
         gamedata = await response.json();
-        console.log(gamedata);
         localStorage.setItem(gamedata_id_access_string, gamedata._id);
         localStorage.setItem(score_access_string, gamedata.score);
         localStorage.setItem(enemy_health_access_string, gamedata.enemy_health);
@@ -17,6 +16,10 @@ async function get_gamedata() {
         localStorage.setItem(enemy_index_access_string, gamedata.enemy_index);
         localStorage.setItem(health_access_string, gamedata.health);
         localStorage.setItem(healing_access_string, gamedata.healing);
+        // initalize high score so websocket can send accurate updates about the player's score (in game_buttons.js)
+        previous_high_score = gamedata.score;
+
+        socket.send(`${username} started hunting monsters`);
     } catch {
         console.log("Error: could not fetch gamedata for " + username);
     }
@@ -193,3 +196,5 @@ const log_max = 8;
 const less_log_max = 4;
 const less_log_screen_width_limit = 600;
 let log_count = 0;
+
+console.log("Game initalized")
