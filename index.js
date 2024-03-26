@@ -107,7 +107,7 @@ app.get("/api/gamedata", async (request, response) => {
     const user_request = await auth_collection.findOne({ token: token_request });
     if (!user_request || !name_request || name_request == 'null') {
         response.status(401);
-        response.send("Error: Unauthor4ized");
+        response.send("Error: Unauthorized");
         return;
     }
     const gamedata_request = await get_game_data(name_request);
@@ -194,5 +194,6 @@ let gamedata_entry_default = {
 }
 
 
-app.listen(port);
+const http_server = app.listen(port);
+ws.web_socket_server(http_server);
 

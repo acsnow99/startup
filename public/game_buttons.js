@@ -75,7 +75,9 @@ function update_health_count(count) {
     let new_health = Number(local_health) + count;
     if (new_health <= 0) {
         alert("You were defeated by a " + enemy_names[enemy_index] + "! You lost " + String(Math.abs(lose_cost)) + "g.");
-        update_log_display(local_username + " was defeated by a " + enemy_names[enemy_index] + " and lost " + String(Math.abs(lose_cost)) + "g!");
+        let log_string = local_username + " was defeated by a " + enemy_names[enemy_index] + " and lost " + String(Math.abs(lose_cost)) + "g!";
+        update_log_display(log_string);
+        socket.send(log_string);
         console.log("player lost");
         new_health = 3;
         update_score_count(lose_cost);

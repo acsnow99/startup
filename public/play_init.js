@@ -1,4 +1,3 @@
-// script depends on game_buttons.js
 
 async function get_gamedata() {
     let username = localStorage.getItem("username");
@@ -156,7 +155,7 @@ function update_log_display(message) {
         log_parent.removeChild(log_old);
         let log_second_old = document.getElementById("log" + String(log_count - log_max));
         log_second_old.setAttribute("style", "opacity: 20%")
-    } else if (window.innerWidth <= less_log_screen_width_limit && log_count > less_log_max) {
+    } else if (log_count > less_log_max) {
         let log_old = document.getElementById("log" + String(log_count - less_log_max - 1));
         log_parent.removeChild(log_old);
         let log_second_old = document.getElementById("log" + String(log_count - less_log_max));
