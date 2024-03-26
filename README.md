@@ -87,11 +87,20 @@ Imagine a world of brave heroes and warmongering monsters that is available at y
 
 
 
-## 3/21/24 Service Deliverable:
+## 3/21/24 Login Deliverable:
 ### Changes:
 - **Supports new user registration:** User can create a new account by clicking on a link on the login page. 
 - **Supports existing user authentication** on the login page.
 - **Stores app data in MongoDB**
 - **Stores credentials in MongoDB**
 - **Restricts app functionality if user is not authorized:** Unauthorized users are kicked to the login page.
+
+
+
+## 3/25/24 WebSocket Deliverable:
+### Changes:
+- **Backend listens for WebSocket connection**
+- **Frontend makes WebSocket connection** through HTTP request to backend
+- **Logs of user activity sent over WebSocket connection**
+- **User activity logs display** on play.html page
 
