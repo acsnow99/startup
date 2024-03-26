@@ -19,6 +19,11 @@ function web_socket_server(http_server) {
         const connection = { id: UUID.v4(), alive: true, ws: ws };
         connections.push(connection);
 
+        ws.on("message", function message(message) {
+            console.log("Message received!");
+            connection.ws.send("Message received!");
+        });
+
         ws.on("pong", () => {
             connection.alive = true;
         });
