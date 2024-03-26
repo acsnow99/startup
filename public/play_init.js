@@ -193,5 +193,3 @@ const log_max = 8;
 const less_log_max = 4;
 const less_log_screen_width_limit = 600;
 let log_count = 0;
-setTimeout(() => update_log_display("karen321 defeated a landsquid and earned 304g!"), 5000);
-setTimeout(() => update_log_display("karen321 was defeated by a landsquid and lost 2000g!"), 10000);
