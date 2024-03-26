@@ -76,7 +76,6 @@ function update_health_count(count) {
     if (new_health <= 0) {
         alert("You were defeated by a " + enemy_names[enemy_index] + "! You lost " + String(Math.abs(lose_cost)) + "g.");
         let log_string = local_username + " was defeated by a " + enemy_names[enemy_index] + " and lost " + String(Math.abs(lose_cost)) + "g!";
-        update_log_display(log_string);
         socket.send(log_string);
         console.log("player lost");
         new_health = 3;
@@ -100,8 +99,6 @@ function update_enemy_health_count(count, player_gets_score_for_win=true) {
         localStorage.setItem(enemy_health_access_string + "max", new_enemy_health);
         if (player_gets_score_for_win) {
             const score_win = base_win_score + win_score_multiplier * local_enemy_health_max;
-            const message = local_username + " defeated a " + enemy_names[enemy_index] + " and earned " + String(score_win) + "g!";
-            update_log_display(message);
             update_score_count(score_win);
         }
         update_enemy_image_index();
