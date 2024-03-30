@@ -75,7 +75,7 @@ function update_health_count(count) {
     if (new_health <= 0) {
         alert("You were defeated by a " + enemy_names[enemy_index] + "! You lost " + String(Math.abs(lose_cost)) + "g.");
         let log_string = local_username + " was defeated by a " + enemy_names[enemy_index] + " and lost " + String(Math.abs(lose_cost)) + "g!";
-        socket.send(log_string);
+        send_websocket_message(log_string);
         console.log("player lost");
         new_health = 3;
         update_score_count(lose_cost);
@@ -115,10 +115,10 @@ function update_score_count(count) {
         new_score = 0;
     }
     if (new_score >= Number(previous_high_score) + score_websocket_message_threshold) {
-        socket.send(`${local_username} reached ${new_score}g!`);
+        send_websocket_message(`${local_username} reached ${new_score}g!`);
         previous_high_score = new_score;
     } else if (new_score < Number(previous_high_score) - (score_websocket_message_threshold/2)) {
-        socket.send(`${local_username} dropped down to ${new_score}g.`);
+        send_websocket_message(`${local_username} dropped down to ${new_score}g.`);
         previous_high_score = new_score;
     }
     localStorage.setItem(score_access_string, new_score);
