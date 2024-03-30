@@ -19,10 +19,18 @@ async function get_gamedata() {
         // initalize high score so websocket can send accurate updates about the player's score (in game_buttons.js)
         previous_high_score = gamedata.score;
 
-        socket.send(`${username} started hunting monsters`);
+        await send_websocket_message(`${username} started hunting monsters`);
     } catch {
         console.log("Error: could not fetch gamedata for " + username);
     }
+}
+
+async function send_websocket_message(message) {
+    var ready = false;
+    while (!ready) {
+        ready = socket.readyState == WebSocket.OPEN;
+    }
+    socket.send(message);
 }
 
 function update_username_display() {

@@ -1,5 +1,6 @@
 
-const socket = new WebSocket(`ws://${window.location.host}`);
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+const socket = new WebSocket(`${protocol}://${window.location.host}`);
 
 socket.onmessage = async (event) => {
     const message = await event.data.text();
