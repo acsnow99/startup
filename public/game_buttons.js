@@ -24,7 +24,6 @@ const score_websocket_message_threshold = 5000;
 let previous_high_score = 0;
 
 document.querySelector("#game_button_run")?.addEventListener('click', function(event) { 
-    console.log("run button clicked");
     const local_score = localStorage.getItem(score_access_string);
     if (local_score >= Math.abs(run_cost)) {
         update_enemy_health_count(-20, false);
@@ -34,7 +33,6 @@ document.querySelector("#game_button_run")?.addEventListener('click', function(e
 });
 
 document.querySelector("#game_button_heal")?.addEventListener('click', function(event) {
-    console.log("heal button clicked");
     const local_healing = localStorage.getItem(healing_access_string);
     if (!health_is_at_max() && local_healing > 0) {
         update_healing_count(-1);
@@ -45,7 +43,6 @@ document.querySelector("#game_button_heal")?.addEventListener('click', function(
 // enemy health -= 1; a chance of player health -= 1; 
 //  if enemy or player is defeated, server backup is updated
 document.querySelector("#game_button_fight")?.addEventListener('click', async function(event) {
-    console.log("fight button clicked");
     const random_index = Math.floor(Math.random() * (random_numbers_count - 1));
     const random_seed = random_numbers[random_index];
     // if enemy will be defeated, update server backup
