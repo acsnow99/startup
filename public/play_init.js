@@ -27,7 +27,9 @@ async function get_gamedata() {
 
 async function send_websocket_message(message) {
     var ready = false;
-    while (!ready) {
+    var attempts = 0;
+    while (!ready && attempts < 1000) {
+        attempts += 1;
         ready = socket.readyState == WebSocket.OPEN;
     }
     socket.send(message);
