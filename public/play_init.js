@@ -19,7 +19,7 @@ async function get_gamedata() {
         // initalize high score so websocket can send accurate updates about the player's score (in game_buttons.js)
         previous_high_score = gamedata.score;
 
-        await send_websocket_message(`${username} started hunting monsters`);
+        send_websocket_message(`${username} started hunting monsters`);
     } catch {
         console.log("Error: could not fetch gamedata for " + username);
     }

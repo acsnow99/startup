@@ -5,7 +5,7 @@ const port = 4000;
 app.use(express.static("public"));
 
 const { MongoClient } = require('mongodb');
-const config = require('./dbConfig.json');
+const config = require('../dbConfig.json');
 
 const url = `mongodb+srv://${config.username}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
@@ -50,6 +50,7 @@ app.post("/api/register", async (request, response) => {
 });
 
 app.post("/api/login", async (request, response) => {
+    console.log("User trying to login");
     let name_request = request.query["name"];
     let pass_request = request.query["password"];
     let auth_request = await get_auth(name_request);
@@ -59,6 +60,7 @@ app.post("/api/login", async (request, response) => {
     } else {
         let password_correct = await bcrypt.compare(pass_request, auth_request[0].password);
         if (!password_correct) {
+            console.log("User entered incorrect password");
             response.status(401);
             response.send("Error: incorrect password");
         } else {
@@ -74,6 +76,7 @@ app.post("/api/login", async (request, response) => {
                 httpOnly: true,
                 sameSite: 'strict',
             });
+            console.log("User logged in");
             response.status(200);
             response.send(user_obj);
         }
