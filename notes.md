@@ -30,3 +30,26 @@ Arrays are defined with square brackets. Filter function takes a function as a p
 ## 2/20/24 JS DOM
 It is quite simple to define functions that update a specific part of the DOM, then reuse that function over and over with different data to get different results. 
 Array sorting functions take a function as an argument. The function must return -1, 0, or 1 to determine sorting. Use localeCompare to compare strings in this way.
+
+
+## 4/3/24 State Hooks in React
+Calling the update function returned by useState also asks React to optimally re-render the page. Optimally means that it only re-renders the components that depend on the state. 
+To render a React component: ```ReactDOM.render(<componentName/>, document.getElementById("id"));```
+To return JSX from a component "function": ```return ( *HTML looking stuff* );```
+```useEffect``` also runs every time a state changes in React. The return value of the insides of the useEffect function is a function that is called when the component is torn down. 
+```React.useEffect(() => {
+  console.log('rendered');
+  return function cleanup() {
+    console.log('cleanup');
+  }
+});```
+In the above example, whenever state in the same component is changed, it will output "cleanup" then "rendered". On the initial render, it will not output "cleanup".
+```React.useEffect(() => {
+
+}, []);```
+The above example will only run on the initial render. The braces contain a list of all the states that the useEffect will track. As such,
+```React.useEffect(() => {
+
+}, [count]);```
+will only activate when "count" is updated, but will not react to any other state or parameter.
+useEffect will also trigger for parameters passed into its component. 
