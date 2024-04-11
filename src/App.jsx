@@ -1,6 +1,6 @@
 import './style.css'
 import { Login } from "./Login";
-import "./bootstrap/css/bootstrap.css";
+import "./bootstrap/css/bootstrap.min.css";
 
 
 function App() {
@@ -26,7 +26,9 @@ function App() {
 
       <Login />
 
-      
+      <footer>
+        <p>by Alex Snow - <a href="https://github.com/acsnow99/startup">GitHub</a></p>
+      </footer>
     </>
   )
 }
