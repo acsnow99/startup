@@ -1,10 +1,11 @@
-import React from "react";
-import { Play } from "./Play";
-import "./bootstrap/css/bootstrap.min.css";
+import { useState } from 'react'
+import './App.css'
+import { Login } from "./Login";
 
 function App() {
-    return (
-    <App>
+
+  return (
+    <>
       <header>
         <nav class="navbar navbar-expand navbar-dark">
           <a class="navbar-brand" href="index.html">Cool CS RPG - </a>
@@ -21,16 +22,14 @@ function App() {
           </ul>
         </nav>
       </header>
-      <main>
-        <Routes>
-          <Route
-            path='/'
-            element={<Login exact/>} />
-          <Route path='/play' element={<Play />} />
-          <Route path='/rules' element={<Rules />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </main>
-    </App>);
+
+      <Login />
+
+      <footer style="align-items: start">
+        <p>by Alex Snow - <a href="https://github.com/acsnow99/startup">GitHub</a></p>
+      </footer>
+    </>
+  )
 }
 
+export default App

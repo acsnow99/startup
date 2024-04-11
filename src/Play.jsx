@@ -17,3 +17,6 @@ function Play() {
       </form>
     </Play>
 }
+
+
+export { Play };

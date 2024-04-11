@@ -35,9 +35,7 @@ function web_socket_server(http_server) {
 
 
     setInterval(() => {
-        console.log("Attempting test connection");
         connections.forEach((connection) => {
-            console.log("Attempting test a single connection (for loop)")
             if (!connection.alive) {
                 connection.ws.terminate();
             } else {
