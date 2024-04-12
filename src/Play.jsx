@@ -1,4 +1,10 @@
+import { init_display } from "./play_init";
+import { player_run, player_heal, player_attack } from "./game_buttons";
+import { activate_receive_websocket } from "./game_socket";
+
 function Play() {
+  init_display();
+  activate_receive_websocket();
     return (
       <main>
         <div className="game_images_and_log_and_username_container">
@@ -24,10 +30,10 @@ function Play() {
                 <img src="images/enemy.jpg" id="monster_image" className="monster_image" />
               </div>
               <div className="game_buttons_container">
-                <button type="button" id="game_button_fight" className="game_button_fight btn btn-primary btn-lg">Fight!</button>
+                <button type="button" id="game_button_fight" onClick={player_attack} className="game_button_fight btn btn-primary btn-lg">Fight!</button>
                 <div className="game_buttons_container_internal">
-                  <button type="button" id="game_button_heal" className="game_button_heal btn btn-success"><div id="healing_display">Heal! 0</div></button>
-                  <button type="button" id="game_button_run" className="game_button_run btn btn-secondary btn-sm"><div id="run_display">Run!</div></button>
+                  <button type="button" id="game_button_heal" onClick={player_heal} className="game_button_heal btn btn-success"><div id="healing_display">Heal! 0</div></button>
+                  <button type="button" id="game_button_run" onClick={player_run} className="game_button_run btn btn-secondary btn-sm"><div id="run_display">Run!</div></button>
                 </div>
               </div>
             </div>
@@ -39,9 +45,6 @@ function Play() {
           <div className="game_log_container" id="game_log_container">
           </div>
         </div>
-        <script src="game_buttons.js"></script>
-        <script src="game_socket.js"></script>
-        <script src="play_init.js"></script>
       </main>
     )
 }
