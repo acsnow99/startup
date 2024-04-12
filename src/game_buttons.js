@@ -1,5 +1,4 @@
 import { update_enemy_image, update_health_display, update_healing_display, update_score_display } from "./play_init";
-import { send_websocket_message } from "./game_socket";
 
 const local_username = localStorage.getItem("username");
 const score_access_string = "score" + local_username;
@@ -7,9 +6,6 @@ const healing_access_string = "healing" + local_username;
 const health_access_string = "health" + local_username;
 const enemy_health_access_string = "enemy_health" + local_username;
 const enemy_index_access_string = "enemy_index" + local_username;
-
-
-console.log("Game buttons script loaded");
 
 let enemy_index = 0;
 const enemy_img_src = ["images/enemy.jpg", "images/enemy1.jpeg"];
@@ -159,5 +155,25 @@ async function get_random_numbers(min, max, count) {
     const response_text = await response.text();
     random_numbers = response_text.split("\n");
 }
+
+
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+const socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+socket.onmessage = async (event) => {
+    const message = await event.data.text();
+    update_log_display(message);
+}
+
+
+async function send_websocket_message(message) {
+    var ready = false;
+    var attempts = 0;
+    while (!ready && attempts < 1000) {
+        attempts += 1;
+        ready = socket.readyState == WebSocket.OPEN;
+    }
+    socket.send(message);
+}
+
 
 export { player_run, player_heal, player_attack };

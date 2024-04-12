@@ -1,10 +1,7 @@
 import { init_display } from "./play_init";
 import { player_run, player_heal, player_attack } from "./game_buttons";
-import { activate_receive_websocket } from "./game_socket";
-
 function Play() {
   init_display();
-  activate_receive_websocket();
     return (
       <main>
         <div className="game_images_and_log_and_username_container">
