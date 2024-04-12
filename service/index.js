@@ -23,7 +23,10 @@ const ws = require("./web_socket.js");
 app.use(cookie_parser());
 app.use(express.json());
 
-app.post("/api/register", async (request, response) => {
+const router = express.Router();
+app.use(`/api`, router);
+
+router.post("/register", async (request, response) => {
     let name_request = request.query["name"];
     let pass_request = request.query["password"];
     let auth_request = await get_auth(name_request);
@@ -49,7 +52,8 @@ app.post("/api/register", async (request, response) => {
     }
 });
 
-app.post("/api/login", async (request, response) => {
+router.post("/login", async (request, response) => {
+    console.log("User trying to login");
     let name_request = request.query["name"];
     let pass_request = request.query["password"];
     let auth_request = await get_auth(name_request);
@@ -59,6 +63,7 @@ app.post("/api/login", async (request, response) => {
     } else {
         let password_correct = await bcrypt.compare(pass_request, auth_request[0].password);
         if (!password_correct) {
+            console.log("User entered incorrect password");
             response.status(401);
             response.send("Error: incorrect password");
         } else {
@@ -74,13 +79,14 @@ app.post("/api/login", async (request, response) => {
                 httpOnly: true,
                 sameSite: 'strict',
             });
+            console.log("User logged in");
             response.status(200);
             response.send(user_obj);
         }
     }
 });
 
-app.post("/api/gamedata", async (request, response) => {
+router.post("/gamedata", async (request, response) => {
     let name_request = request.query["name"];
     let token_request = request.cookies["token"];
     const user_request = await auth_collection.findOne({ token: token_request });
@@ -101,7 +107,7 @@ app.post("/api/gamedata", async (request, response) => {
 });
 
 
-app.get("/api/gamedata", async (request, response) => {
+router.get("/gamedata", async (request, response) => {
     let name_request = request.query["name"];
     let token_request = request.cookies["token"];
     const user_request = await auth_collection.findOne({ token: token_request });
