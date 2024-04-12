@@ -1,4 +1,4 @@
-import { update_enemy_image, update_health_display, update_healing_display, update_score_display } from "./play_init";
+import { update_enemy_image, update_health_display, update_healing_display, update_score_display, update_log_display } from "./play_init";
 
 const local_username = localStorage.getItem("username");
 const score_access_string = "score" + local_username;

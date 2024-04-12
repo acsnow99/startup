@@ -201,4 +201,4 @@ async function init_display() {
     update_display();
 }
 
-export { init_display, update_enemy_image, update_health_display, update_healing_display, update_score_display };
+export { init_display, update_enemy_image, update_health_display, update_healing_display, update_score_display, update_log_display };

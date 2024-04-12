@@ -15,12 +15,10 @@ function web_socket_server(http_server) {
     });
 
     wss.on("connection", (ws) => {
-        console.log("New connection");
         const connection = { id: UUID.v4(), alive: true, ws: ws };
         connections.push(connection);
 
         ws.on("message", function message(message) {
-            console.log("Message received!");
             connections.forEach((conn) => {
                 if (conn !== connection) {
                     conn.ws.send(message);

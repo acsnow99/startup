@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './style.css'
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from "./Login";
+import { Register } from './Register';
 import { Play } from "./Play";
 import { Rules } from "./Rules";
 import { NotFound } from "./NotFound";
@@ -31,6 +32,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login />} exact />
+        <Route path="/register" element={<Register />} />
         <Route path="/play" element={<Play />} />
         <Route path="/rules" element={<Rules />} />
         <Route path="*" element={<NotFound />} />
