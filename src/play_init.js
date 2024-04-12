@@ -2,13 +2,13 @@ const log_max = 8;
 const less_log_max = 4;
 const less_log_screen_width_limit = 600;
 let log_count = 0;
-const local_username = localStorage.getItem("username");
+
 const gamedata_id_access_string = "gamedata_id";
-const score_access_string = "score" + local_username;
-const healing_access_string = "healing" + local_username;
-const health_access_string = "health" + local_username;
-const enemy_health_access_string = "enemy_health" + local_username;
-const enemy_index_access_string = "enemy_index" + local_username;
+const score_access_string = "score";
+const healing_access_string = "healing";
+const health_access_string = "health";
+const enemy_health_access_string = "enemy_health";
+const enemy_index_access_string = "enemy_index";
 const enemy_img_src = ["images/enemy.jpg", "images/enemy1.jpeg"];
 
 async function get_gamedata() {
@@ -21,13 +21,13 @@ async function get_gamedata() {
             window.location.href = "index.html";
         }
         gamedata = await response.json();
-        localStorage.setItem(gamedata_id_access_string, gamedata._id);
-        localStorage.setItem(score_access_string, gamedata.score);
-        localStorage.setItem(enemy_health_access_string, gamedata.enemy_health);
-        localStorage.setItem(enemy_health_access_string + "max", gamedata.enemy_health_max);
-        localStorage.setItem(enemy_index_access_string, gamedata.enemy_index);
-        localStorage.setItem(health_access_string, gamedata.health);
-        localStorage.setItem(healing_access_string, gamedata.healing);
+        localStorage.setItem(gamedata_id_access_string + username, gamedata._id);
+        localStorage.setItem(score_access_string + username, gamedata.score);
+        localStorage.setItem(enemy_health_access_string + username, gamedata.enemy_health);
+        localStorage.setItem(enemy_health_access_string + username + "max", gamedata.enemy_health_max);
+        localStorage.setItem(enemy_index_access_string + username, gamedata.enemy_index);
+        localStorage.setItem(health_access_string + username, gamedata.health);
+        localStorage.setItem(healing_access_string + username, gamedata.healing);
     } catch {
         console.log("Error: could not fetch gamedata for " + username);
     }
@@ -177,8 +177,9 @@ function update_log_display(message) {
 }
 
 function update_enemy_image() {
+    const local_username = localStorage.getItem("username");
     const enemy_img_obj = document.querySelector("#monster_image");
-    const enemy_index = localStorage.getItem(enemy_index_access_string);
+    const enemy_index = localStorage.getItem(enemy_index_access_string + local_username);
     const enemy_image = enemy_img_src[enemy_index];
     enemy_img_obj.src = enemy_image;
 }
