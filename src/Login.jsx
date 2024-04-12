@@ -1,6 +1,5 @@
 function Login() {
     async function submit_login_and_advance_to_play(event) {
-        console.log("Submit button clicked");
         const input_username = document.querySelector("#username").value;
         const input_password = document.querySelector("#password").value;
     
@@ -14,7 +13,6 @@ function Login() {
             }
             let body = await response.json();
             console.log("Sent username to server");
-            window.location.href = "play.html";
         } catch (error) {
             let username_parent = document.querySelector("#login_form");
             let existing_username_taken_element = document.querySelector("#username_taken_message");
