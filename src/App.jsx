@@ -2,6 +2,7 @@ import './style.css'
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from "./Login";
 import { Play } from "./Play";
+import { NotFound } from "./NotFound";
 import "./bootstrap/css/bootstrap.min.css";
 
 
@@ -11,10 +12,10 @@ function App() {
     <BrowserRouter>
       <header>
         <nav className="navbar navbar-expand navbar-dark">
-          <a className="navbar-brand" href="index.html">Cool CS RPG - </a>
+          <NavLink className="navbar-brand" to="/">Cool CS RPG - </NavLink>
           <ul className="navbar-nav navbar-right">
             <li className="nav-item">
-              <a className="nav-link" to="play">Play</a>
+              <NavLink className="nav-link" to="play">Play</NavLink>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="rules.html">Rules</a>
@@ -30,6 +31,7 @@ function App() {
         <Route 
           path="/play" element={<Play />} />
         <Route path="/" element={<Login />} exact />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <footer>
