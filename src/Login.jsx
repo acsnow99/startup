@@ -16,7 +16,6 @@ function Login() {
                 throw new Error("Error: incorrect password");
             }
             let body = await response.json();
-            console.log("Sent username to server");
         } catch (error) {
             let username_parent = document.querySelector("#login_form");
             let existing_username_taken_element = document.querySelector("#username_taken_message");
@@ -46,7 +45,7 @@ function Login() {
               <label htmlFor="password">Password:</label>
               <input type="password" className="form-control" id="password" placeholder="Password" required />
             </div>
-            <button id="btn_submit_login" className="btn btn-primary btn-login" onClick={() => {submit_login_and_advance_to_play(); navigate("./play")}}>Login</button>
+            <button id="btn_submit_login" className="btn btn-primary btn-login" onClick={async () => {await submit_login_and_advance_to_play(); navigate("./play")}}>Login</button>
           </div>
           <div>New to the Guild? Register your hero <NavLink to="/register">here.</NavLink></div>
         </div>

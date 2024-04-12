@@ -28,10 +28,6 @@ async function get_gamedata() {
         localStorage.setItem(enemy_index_access_string, gamedata.enemy_index);
         localStorage.setItem(health_access_string, gamedata.health);
         localStorage.setItem(healing_access_string, gamedata.healing);
-        // initalize high score so websocket can send accurate updates about the player's score (in game_buttons.js)
-        previous_high_score = gamedata.score;
-
-        send_websocket_message(`${username} started hunting monsters`);
     } catch {
         console.log("Error: could not fetch gamedata for " + username);
     }
