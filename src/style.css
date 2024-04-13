@@ -160,20 +160,27 @@ footer > * {
     padding-bottom: 2rem;
 }
 
+.game_button_fight {
+    flex: 1;
+    font-size: 400% !important;
+}
+
 @media screen and (max-width: 500px) {
+    .game_images_and_buttons_container {
+        gap: 1rem;
+    }
     .game_buttons_container {
         display: flex;
         align-items: center;
-        flex-direction: row;
+        flex-direction: column;
         gap: 0.5rem;
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
-}
-
-.game_button_fight {
-    flex: 1;
-    font-size: 275%;
+    .game_button_fight {
+        flex: 1;
+        font-size: 275% !important;
+    }
 }
 
 .game_buttons_container_internal {
@@ -187,6 +194,8 @@ footer > * {
 .game_button_heal {
     flex: 1;
     font-size: 300%;
+    display: flex !important;
+    flex-direction: row !important;
 }
 
 .game_button_run {
@@ -232,8 +241,8 @@ footer > * {
     height: 30vh;
 }
 .monster_image {
-    width: auto;
-    height: 60vh;
+    width: 40vw;
+    height: auto;
 }
 
 
@@ -243,8 +252,8 @@ footer > * {
         height: 20vh;
     }
     .monster_image {
-        width: auto;
-        height: 40vh;
+        width: 30vw;
+        height: auto;
     }
     .player_hearts {
         transform: translate(0, 7rem);
