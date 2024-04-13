@@ -30,7 +30,13 @@ function Play() {
                 <button type="button" id="game_button_fight" onClick={player_attack} className="game_button_fight btn btn-primary btn-lg">Fight!</button>
                 <div className="game_buttons_container_internal">
                   <button type="button" id="game_button_heal" onClick={player_heal} className="game_button_heal btn btn-success"><div id="healing_display">Heal! 0</div></button>
-                  <button type="button" id="game_button_run" onClick={player_run} className="game_button_run btn btn-secondary btn-sm"><div id="run_display">Run!</div></button>
+                  <div>
+                    <button type="button" id="game_button_run" onClick={player_run} className="game_button_run btn btn-secondary btn-sm">
+                      +1<img className="icon_heal" src="images/icon_heal.png"/>
+                      <div id="run_display">Run!</div>
+                      -200<img className="icon_gold" src="images/icon_gold.png"/>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

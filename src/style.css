@@ -139,6 +139,16 @@ footer > * {
     align-items: center;
 }
 
+.icon_heal {
+    width: 1.5rem;
+    height: auto;
+}
+
+.icon_gold {
+    width: 1.5rem;
+    height: auto;
+}
+
 
 .game_buttons_container {
     flex: 0 8rem;
@@ -182,6 +192,8 @@ footer > * {
 .game_button_run {
     flex: 1;
     font-size: 150%;
+    display: flex !important;
+    flex-direction: row !important;
 }
 
 .game_images_container_internal {
