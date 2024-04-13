@@ -3,3 +3,5 @@ package.json
 node_modules/*
 service/dbConfig.json
 src/bootstrap
+service/node_modules/*
+dist
