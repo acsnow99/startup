@@ -26,15 +26,19 @@ function Play() {
                 <img src="images/hero.png" className="hero_image" />
                 <img src="images/enemy.jpg" id="monster_image" className="monster_image" />
               </div>
+              <div className="filler_buttons"></div>
               <div className="game_buttons_container">
                 <button type="button" id="game_button_fight" onClick={player_attack} className="game_button_fight btn btn-primary btn-lg">Fight!</button>
                 <div className="game_buttons_container_internal">
-                  <button type="button" id="game_button_heal" onClick={player_heal} className="game_button_heal btn btn-success"><img className="icon_heal" src="images/icon_heal_empty.png"/><div id="healing_display">Heal! 0</div></button>
+                  <button type="button" id="game_button_heal" onClick={player_heal} className="game_button_heal btn btn-success">
+                    <div id="healing_display">Heal! 0</div>
+                    <img className="icon_heal" src="images/icon_heal_empty.png"/>
+                  </button>
                   <div>
                     <button type="button" id="game_button_run" onClick={player_run} className="game_button_run btn btn-secondary btn-sm">
                       +1<img className="icon_heal" src="images/icon_heal_empty.png"/>
                       <div id="run_display">Run!</div>
-                      -200<img className="icon_gold" src="images/icon_gold.png"/>
+                      <img className="icon_gold" src="images/icon_gold.png"/>-200
                     </button>
                   </div>
                 </div>

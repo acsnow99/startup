@@ -129,7 +129,7 @@ footer > * {
     flex: 4;
     display: flex;
     touch-action: manipulation;
-    height: 70%;
+    height: 100%;
 }
 
 .game_images_and_buttons_container {
@@ -140,15 +140,19 @@ footer > * {
 }
 
 .icon_heal {
-    width: 1.5rem;
+    width: 3rem;
     height: auto;
 }
 
 .icon_gold {
-    width: 1.5rem;
+    width: 3rem;
     height: auto;
 }
 
+
+.filler_buttons {
+    flex: 6;
+}
 
 .game_buttons_container {
     flex: 0 8rem;
@@ -165,24 +169,6 @@ footer > * {
     font-size: 400% !important;
 }
 
-@media screen and (max-width: 500px) {
-    .game_images_and_buttons_container {
-        gap: 1rem;
-    }
-    .game_buttons_container {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 0.5rem;
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-    }
-    .game_button_fight {
-        flex: 1;
-        font-size: 275% !important;
-    }
-}
-
 .game_buttons_container_internal {
     flex: 1;
     display: flex;
@@ -193,16 +179,18 @@ footer > * {
 
 .game_button_heal {
     flex: 1;
-    font-size: 300%;
+    font-size: 400% !important;
     display: flex !important;
     flex-direction: row !important;
+    align-items: center;
 }
 
 .game_button_run {
     flex: 1;
-    font-size: 150%;
+    font-size: 300% !important;
     display: flex !important;
     flex-direction: row !important;
+    align-items: center;
 }
 
 .game_images_container_internal {
@@ -228,9 +216,6 @@ footer > * {
     align-items: center;
     justify-content: center;
 }
-.player_hearts {
-    transform: translate(-5rem, 15rem);
-}
 
 .heart_image {
     width: 3em;
@@ -241,8 +226,8 @@ footer > * {
     height: 30vh;
 }
 .monster_image {
-    width: 40vw;
-    height: auto;
+    width: auto;
+    height: 40vh;
 }
 
 
@@ -254,9 +239,6 @@ footer > * {
     .monster_image {
         width: 30vw;
         height: auto;
-    }
-    .player_hearts {
-        transform: translate(0, 7rem);
     }
 }
 
@@ -287,14 +269,53 @@ footer > * {
         width: auto;
         height: 10rem;
     }
-    .player_hearts {
-        transform: translate(-20%, 5rem);
-    }
     .game_log_container {
         display: flex;
         flex-direction: column-reverse;
     }
     .game_log_header {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .game_images_and_buttons_and_username_container {
+        height: 70%;
+    }
+    .game_buttons_container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .game_button_fight {
+        flex: 1;
+        font-size: 200% !important;
+    }
+
+    .game_button_heal {
+        font-size: 200% !important;
+    }
+    
+    .game_button_run {
+        font-size: 150% !important;
+    }
+
+    .icon_heal {
+        width: 1.5rem;
+        height: auto;
+    }
+    
+    .icon_gold {
+        width: 1rem;
+        height: auto;
+    }
+}
+
+@media screen and (max-height: 540px) {
+    .game_log_container {
         display: none;
     }
 }
