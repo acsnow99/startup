@@ -7,8 +7,8 @@ const enemy_health_access_string = "enemy_health";
 const enemy_index_access_string = "enemy_index";
 
 let enemy_index = 0;
-const enemy_img_src = ["images/enemy.jpg", "images/enemy1.jpeg"];
-const enemy_names = ["zombie", "landsquid"];
+const enemy_img_src = ["images/enemy.png", "images/enemy1.jpeg"];
+const enemy_names = ["zombie", "landsquid", "crab"];
 const run_cost = -200;
 const base_win_score = 200;
 const win_score_multiplier = 102;
@@ -75,10 +75,11 @@ function update_healing_count(count) {
 function update_health_count(count) {
     const local_username = localStorage.getItem("username");
     const local_health = localStorage.getItem(health_access_string + local_username);
+    const local_enemy_index = localStorage.getItem(enemy_index_access_string + local_username);
     let new_health = Number(local_health) + count;
     if (new_health <= 0) {
-        alert("You were defeated by a " + enemy_names[enemy_index] + "! You lost " + String(Math.abs(lose_cost)) + "g.");
-        let log_string = local_username + " was defeated by a " + enemy_names[enemy_index] + " and lost " + String(Math.abs(lose_cost)) + "g!";
+        alert("You were defeated by a " + enemy_names[local_enemy_index] + "! You lost " + String(Math.abs(lose_cost)) + "g.");
+        let log_string = local_username + " was defeated by a " + enemy_names[local_enemy_index] + " and lost " + String(Math.abs(lose_cost)) + "g!";
         send_websocket_message(log_string);
         console.log("player lost");
         new_health = 3;
@@ -134,7 +135,10 @@ function update_score_count(count) {
 function update_enemy_image_index() {
     const local_username = localStorage.getItem("username");
     const enemy_index_current = Number(localStorage.getItem(enemy_index_access_string + local_username));
-    const enemy_index_updated = (enemy_index_current + 1) % 2;
+    let enemy_index_updated = (enemy_index_current + 1);
+    if (enemy_index_updated >= 3) {
+        enemy_index_updated = 0;
+    }
     localStorage.setItem(enemy_index_access_string + local_username, enemy_index_updated);
     update_enemy_image();
 }

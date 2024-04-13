@@ -24,7 +24,7 @@ function Play() {
               </div>
               <div className="game_images_container_internal">
                 <img src="images/hero.png" className="hero_image" />
-                <img src="images/enemy.jpg" id="monster_image" className="monster_image" />
+                <img src="images/enemy.png" id="monster_image" className="monster_image" />
               </div>
               <div className="filler_buttons"></div>
               <div className="game_buttons_container">

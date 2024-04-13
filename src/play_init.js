@@ -9,7 +9,7 @@ const healing_access_string = "healing";
 const health_access_string = "health";
 const enemy_health_access_string = "enemy_health";
 const enemy_index_access_string = "enemy_index";
-const enemy_img_src = ["images/enemy.jpg", "images/enemy1.jpeg"];
+const enemy_img_src = ["images/enemy.png", "images/enemy1.jpeg", "images/enemy2.png"];
 
 async function get_gamedata() {
     let username = localStorage.getItem("username");
