@@ -104,3 +104,10 @@ Imagine a world of brave heroes and warmongering monsters that is available at y
 - **Logs of user activity sent over WebSocket connection**
 - **User activity logs display** on play.html page
 
+
+## 4/12/24 React Deliverable:
+### Changes:
+- **Bundled using Vite**
+- **Multiple functional react components:** Each page is a React element between a constant header and footer
+- **React router:** Router renders correct elements based on the path
+

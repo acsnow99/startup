@@ -207,6 +207,7 @@ footer > * {
     gap: 5rem;
     align-items: center;
     justify-content: center;
+    margin-top: 1rem;
 }
 .game_images_hearts_container_internal {
     flex: 1;
@@ -314,7 +315,7 @@ footer > * {
     }
 }
 
-@media screen and (max-height: 540px) {
+@media screen and (max-height: 590px) {
     .game_log_container {
         display: none;
     }
