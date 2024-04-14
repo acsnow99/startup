@@ -12,10 +12,10 @@ function Register() {
         try {
             let query_url = "/api/register?name=" + input_username + "&password=" + input_password;
             const response = await fetch(query_url, { method : "POST" });
-            if (response.status == 409) {
+            if (response.status != 200) {
                 throw new Error("Error: username taken");
             }
-            console.log("Sent username to server");
+            navigate("/play");
         } catch (error) {
             let username_parent = document.querySelector("#login_form");
             let username_taken_element = document.createElement("p");
@@ -40,7 +40,7 @@ function Register() {
                     <label htmlFor="password">Password:</label>
                     <input type="password" className="form-control" id="password" placeholder="Password" required />
                 </div>
-                <button id="btn_submit_login" className="btn btn-primary btn-login" onClick={async () => {await submit_register_and_advance_to_play(); navigate("/play")}}>Register</button>
+                <button id="btn_submit_login" className="btn btn-primary btn-login" onClick={async () => {await submit_register_and_advance_to_play();}}>Register</button>
                 </div>
                 <div>Already have a Guild account? Login <NavLink to="/">here.</NavLink></div>
             </div>

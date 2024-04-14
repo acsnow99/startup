@@ -9,7 +9,7 @@ const healing_access_string = "healing";
 const health_access_string = "health";
 const enemy_health_access_string = "enemy_health";
 const enemy_index_access_string = "enemy_index";
-const enemy_img_src = ["images/enemy.png", "images/enemy1.jpeg", "images/enemy2.png"];
+const enemy_img_src = ["images/enemy.png", "images/enemy1.png", "images/enemy2.png"];
 
 async function get_gamedata() {
     let username = localStorage.getItem("username");
@@ -85,11 +85,7 @@ function update_run_display() {
     const run_display = document.createElement("div");
 
     run_display.id = "run_display";
-    if (run_cost != undefined) {
-        run_display.textContent = "Run! (" + String(run_cost) + "g)";
-    } else {
-        run_display.textContent = "Run!";
-    }
+    run_display.textContent = "Run!";
     const run_parent_object = document.querySelector("#game_button_run");
     let existing_run_display = document.getElementById("run_display");
     if (existing_run_display != null) {

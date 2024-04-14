@@ -1,7 +1,16 @@
+import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login(props) {
     const navigate = useNavigate();
+
+    React.useEffect(() => {
+      if (localStorage.getItem("username")) {
+        props.setAuth(true);
+        navigate("./play");
+      }}
+    );
+    
 
     async function submit_login_and_advance_to_play(event) {
         const input_username = document.querySelector("#username").value;
@@ -12,10 +21,11 @@ function Login() {
         try {
             let query_url = "/api/login?name=" + input_username + "&password=" + input_password;
             const response = await fetch(query_url, { method : "POST" });
-            if (response.status == 401) {
+            if (response.status != 200) {
                 throw new Error("Error: incorrect password");
             }
             let body = await response.json();
+            props.setAuth(true);
             navigate("./play");
         } catch (error) {
             let username_parent = document.querySelector("#login_form");

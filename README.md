@@ -110,4 +110,5 @@ Imagine a world of brave heroes and warmongering monsters that is available at y
 - **Bundled using Vite**
 - **Multiple functional react components:** Each page is a React element between a constant header and footer
 - **React router:** Router renders correct elements based on the path
+- **Hooks** are used to show different navigation elements across pages depending on whether the user is logged in
 

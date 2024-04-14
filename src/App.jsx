@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import './style.css'
-import { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from "./Login";
 import { Register } from './Register';
@@ -11,28 +10,34 @@ import "./bootstrap/css/bootstrap.min.css";
 
 
 function App() {
+  const [authorized, setAuthorized] = React.useState(false);
+
+  function logout() {
+    localStorage.removeItem('userName');
+    setAuthorized(false);
+  }
 
   return (
     <BrowserRouter>
       <header>
         <nav className="navbar navbar-expand navbar-dark">
-          <NavLink className="navbar-brand" to="/">Cool CS RPG - </NavLink>
-          <ul className="navbar-nav navbar-right">
+          <NavLink className="navbar-brand" to="/">Cool CS Games - </NavLink>
+          {authorized && (<ul className="navbar-nav navbar-right">
             <li className="nav-item">
-              <NavLink className="nav-link" to="play">Play</NavLink>
+              <NavLink className="nav-link" to="/play">Play</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="rules">Rules</NavLink>
+              <NavLink className="nav-link" to="/rules">Rules</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/">Logout</NavLink>
+              <NavLink className="nav-link" to="/" onClick={() => logout()}>Logout</NavLink>
             </li>
-          </ul>
+          </ul>)}
         </nav>
       </header>
 
       <Routes>
-        <Route path="/" element={<Login />} exact />
+        <Route path="/" element={<Login auth={authorized} setAuth={setAuthorized} />} exact />
         <Route path="/register" element={<Register />} />
         <Route path="/play" element={<Play />} />
         <Route path="/rules" element={<Rules />} />
