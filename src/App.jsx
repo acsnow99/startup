@@ -13,7 +13,8 @@ function App() {
   const [authorized, setAuthorized] = React.useState(false);
 
   function logout() {
-    localStorage.removeItem('userName');
+    console.log("Welp");
+    localStorage.removeItem('username');
     setAuthorized(false);
   }
 
@@ -30,7 +31,7 @@ function App() {
               <NavLink className="nav-link" to="/rules">Rules</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/" onClick={() => logout()}>Logout</NavLink>
+              <NavLink className="nav-link" onClick={() => logout()}>Logout</NavLink>
             </li>
           </ul>)}
         </nav>
@@ -39,7 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login auth={authorized} setAuth={setAuthorized} />} exact />
         <Route path="/register" element={<Register />} />
-        <Route path="/play" element={<Play />} />
+        <Route path="/play" element={<Play auth={authorized} />} />
         <Route path="/rules" element={<Rules />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

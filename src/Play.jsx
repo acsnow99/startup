@@ -1,7 +1,16 @@
 import { init_display } from "./play_init";
+import React from "react";
 import { player_run, player_heal, player_attack } from "./game_buttons";
-function Play() {
+import { useNavigate } from 'react-router-dom';
+
+function Play(props) {
   init_display();
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (!props.auth) {
+      navigate("/");
+    }
+  });
     return (
       <main>
         <div className="game_images_and_log_and_username_container">
